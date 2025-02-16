@@ -187,7 +187,7 @@ export default function CartPage() {
                 <ul>
                     {cart.map((item, index)=>{
                         return <li
-                            key={index} 
+                            key={item.productId} 
                         >
                         <CartItemCard item={item} updateCart = {updateCart} deleteCartItem={deleteCartItem} />
                         </li>
@@ -201,7 +201,6 @@ export default function CartPage() {
         </motion.div>
         }
         </AnimatePresence>
-
 
         </div>
     )
