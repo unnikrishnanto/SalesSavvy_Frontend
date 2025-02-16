@@ -1,6 +1,7 @@
 import {React, useCallback, useEffect, useState} from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import {motion} from "framer-motion"
 import PageHeader from "./PageHeader"
 import ProductCard from "./ProductCard"
 export default function CustomerDashboard() {
@@ -153,7 +154,11 @@ export default function CustomerDashboard() {
     <>		
       <PageHeader {...{ user, changeCategory, cartCount }} />
       
-      <div className="product-div">
+      < motion.div className="product-div"
+        initial={{x : 200}}
+        animate={{x : 0}}
+        transition={{type:"tween", ease: "easeInOut", duration: 1 }}
+      >
         {
           products.map((p, i)=>{
             return <ProductCard key={p.productId} product={p} addToCart= {addToCart}/>
@@ -161,7 +166,7 @@ export default function CustomerDashboard() {
         
         }
  
-      </div>
+      </motion.div>
 
 
     </>
