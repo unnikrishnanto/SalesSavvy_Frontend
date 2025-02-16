@@ -3,6 +3,8 @@ import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import '../assets/styles.css'
+import logo from "../assets/images/salessavvy_logo.png"
+
 export default function () {
   const navigate = useNavigate();
 
@@ -154,7 +156,7 @@ export default function () {
 
   return (
     <div className='signup-div'>
-        <img className='logo' src="/src/assets/images/salessavvy_logo.png" alt="site-logo" />
+        <img className='logo' src={logo} alt="site-logo" />
         
         <h1>Register</h1>
 

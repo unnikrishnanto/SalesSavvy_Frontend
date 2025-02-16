@@ -1,7 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 1rem;
+  min-width: 1300px;
+  margin: 0px;
   text-align: center;
 }
 
@@ -13,7 +18,11 @@
   filter: drop-shadow(0 0 2em #646cffaa);
 }
 
-
+body {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
 
 
 

@@ -8,6 +8,8 @@
   }
 
 .signup-div{
+    margin-top: 10vh;
+    margin-left: 35vw;
     width: 400px;
     height: 100%;
     background-color: #dad1d1;
@@ -15,7 +17,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    align-self: center;
 
 }
 
@@ -142,6 +143,7 @@ form select{
   }
 
 .login-div{
+  margin-top: 5vh;
   width: 100%;
   height: 100%;
   display: flex;
@@ -175,3 +177,221 @@ form select{
     padding: 0px;
     margin: 0px 0px 12px 0px;
 }
+
+
+/* Customer Dashboard Styling */
+
+header{
+    width: 100%;
+    min-width: 900px;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color:  #dad1d1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.logo-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header-logo{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin: 10px 0px 10px 20px;
+    justify-self: flex-start;
+}
+header h2{
+    padding-left: 8px;
+    font-size: 15px;
+    color: rgb(235, 90, 60);
+}
+
+.nav-div{
+    display: flex;
+}
+
+.nav-item{
+    margin: 0px 10px;
+    padding: 5px 5px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.nav-tail {
+    display: flex;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+    font-weight: 600;
+}
+
+.cart-info{
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+}
+
+.cart-info img{
+    width: 60px;
+    height: 60px;
+    padding: 0px;
+}
+
+
+.cart-count-div{
+    position: absolute;   
+    width: 30px;
+    height: 20px;
+    top: 19px;
+    left: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    text-align: center;
+    color: #EB5A3C;
+}
+
+.profile-icon-div{
+    display: flex;
+    height: 50px;
+    align-items: center;
+    padding:0px 50px 0px 0px ;
+    background-color: #dad1d1;
+    position: relative;
+    z-index: 2;
+}
+.profile-icon-div p{
+    color: #000000;
+    cursor: default;
+}
+
+.profile-icon{
+    width: 50px;
+    height: 30px;
+}
+
+.profile-dropdown {
+    position: relative;
+}
+
+.options-div{
+    position: absolute;
+    right: 10px;
+    width: 150px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-dropdown ul{
+    width: 100%;
+    padding: 0px;
+    list-style: none;
+}
+
+.profile-dropdown li{
+    background-color: #b3b2b2;
+    border-radius: 20px;
+    color: rgb(255, 255, 255);
+    list-style: none;
+    margin: 5px 0px;
+    padding: 5px;
+}
+
+/* Styling for produts  */
+
+.product-div {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    background-color: #df9855af;
+    margin: 5px;
+    margin-top: 65px;
+}
+
+@media (max-width: 1300px) {
+    .product-div {
+      grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 1000px) {
+    .product-div {
+      grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .product-div {
+      grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+
+
+.product-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 5px;
+    background-color: #e7d1837b;
+    border: 1px solid #aeaeae8f;
+}
+
+.product-card:hover{
+    background-color: #e7d59498;
+}
+
+
+.product-image{
+    width: 180px;
+    height: 400px;
+    object-fit: fill;
+}
+.product-card h3 {
+    color: #EB5A3C;
+    padding: 10px 0px;
+    margin: 0px;
+}
+
+.product-card p {
+    padding: 0px;
+    margin: 5px 0px;
+    /* color: white; */
+}
+
+.product-price {
+    font-weight: 600;
+    color: rgb(13, 14, 13);
+}
+
+.product-price span {
+    color: rgb(63, 207, 63);
+}
+
+.add-to-cart-button{
+    height: 30px;
+    width: 100px;
+    padding: 5px;
+    margin: 5px;
+    background-color: #000000;
+    border: none;
+
+}
+

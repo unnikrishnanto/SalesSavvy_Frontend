@@ -3,6 +3,8 @@ import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import '../assets/styles.css'
+import logo from "../assets/images/salessavvy_logo.png"
+
 export default function () {
   const navigate = useNavigate();
 
@@ -214,7 +216,7 @@ export default function () {
 
     <div className='login-div'>
       <div className='login-form-background'>
-          <img className='logo' src="/src/assets/images/salessavvy_logo.png" alt="site-logo" />
+          <img className='logo' src={logo} alt="site-logo" />
           
           <h1>Login</h1>
 

@@ -4,6 +4,7 @@ import SignUp from './utils/SignUp'
 import Login from './utils/Login'
 import CustomerDashboard from './utils/CustomerDashboard'
 import AdminDashboard from './utils/AdminDashboard'
+import CartPage from './utils/CartPage'
 
 
 export default function AppRoutes() {
@@ -14,6 +15,7 @@ export default function AppRoutes() {
             <Route path='/register' element={<SignUp/>} ></Route>
             <Route path='/customerHome' element={<CustomerDashboard/>}></Route>
             <Route path='/adminHome' element={<AdminDashboard/>}></Route>
+            <Route path='/cart' element={<CartPage/>}></Route>
         </Routes>
     </BrowserRouter>
   )
