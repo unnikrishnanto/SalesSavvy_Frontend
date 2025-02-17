@@ -195,9 +195,9 @@ export default function CartPage() {
                 </ul>
                 </div>
             </div>
-
-            <OrderSummary cart={ cart } amount={amount}/>
-        
+            {cart.length >0 &&
+                <OrderSummary cart={ cart } amount={amount}/>
+            }
         </motion.div>
         }
         </AnimatePresence>

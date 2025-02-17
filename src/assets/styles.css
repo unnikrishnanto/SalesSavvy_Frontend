@@ -555,78 +555,57 @@ header h2{
 
 /* styling for order summary */
 .order-summary-div{
-    width: 50%;
-    height: 500px;
-    background-color: #dfe1e4;
-    margin: 10px;
+    width: 60%;
+    height: 300px;
+    background-color:  #dfe1e4;
+    margin-top: 30px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.bill-div {
+.order-summary-div h2 {
+    color: #47494a;
+    align-self: flex-start;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+
+.orders-div {
     width: 100%;
-    height: 100%;
-    padding: 15px;
     display: flex;
     flex-direction:column;
     align-items: center;
 }
-.bill-div h2 {
-    align-self: flex-start;
+
+.order-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 40px;
+    margin: 8px 0px;
     color: #47494a;
-    margin: 10px 5px;
 }
 
-.table-container{
-    height: 300px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #888 #f0f0f0;
-}
-
-/* Custom scrollbar for Webkit (Chrome, Edge, Safari) */
-.table-container::-webkit-scrollbar {
-    width: 10px;
-}
-
-.table-container::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 5px;
-}
-
-.table-container::-webkit-scrollbar-track {
-    background: #f0f0f0;
-}
-
-
-.bill {
-    border-spacing: 20px 0px;
-    text-align: center;
-}
-
-.bill p  {
-    margin-bottom: 10px;
-    width: 200px;
-    justify-self: center;
-    
-}
-.bill-product-name{
-    text-align: start;
-    padding-left: 50px;
-
-}
 
 .place-order-button {
-    width: 600px;
-    height: 40px;
-    justify-self: flex-end;
+    all: unset; /* Resets all inherited and default styles */
+    display: inline-block; /* Ensures it behaves like a button */
+    cursor: pointer; /* Keeps the pointer cursor */
+    background-color: rgb(95, 95, 95);
+    font-weight: 600;
+    color: white;
+    max-width: 400px;
+    width: 90%;
+    height: 12%;
+    max-height: 40px;
+    margin: 25px;
 }
 
-@media (max-width: 1400px){
-    .place-order-button {
-        width: 400px;
-    }
-      
-}
 
 @media (max-width: 900px){
     .cart-body {
@@ -635,7 +614,7 @@ header h2{
 
     .cart-items-div{
         align-self: center;
-        height: auto;
+        width: 1000px;
     }
 
     .cart-item-card{
@@ -644,6 +623,7 @@ header h2{
 
     .order-summary-div{
         align-self: center;
+        margin-bottom: 50px;
     }
 
 
