@@ -18,11 +18,10 @@ export default function OrderSummary({cart, amount}) {
         <motion.button
           onClick={()=>makePayment()}
           className="place-order-button"
-          initial={{ scale: 0.5 , backgroundColor: 'rgb(95, 95, 95)'}}
-          animate={{ scale: 1, transition: { type: "tween", ease:'easeInOut' } }}  
+          initial={{ opacity: 0, scale: 0.5 }} 
+          animate={{ opacity: 1, scale: 1, backgroundColor: 'rgb(95, 95, 95)' }}  
           whileTap={{ scale: 0.9 }}  
-          whileHover={{backgroundColor: 'rgb(61, 61, 61)', scale: 1.01}}
-          style={{ pointerEvents: "auto" }}  
+          whileHover={{ backgroundColor: 'rgb(44, 43, 43)', scale: 1.01 }}
         >PLACE ORDER
         </motion.button>
     </div>

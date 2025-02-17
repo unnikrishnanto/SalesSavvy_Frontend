@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import logo from "../assets/images/salessavvy_logo.png"
@@ -10,7 +10,23 @@ import OrderSummary from './OrderSummary'
 
 
 export default function CartPage() {
- 
+    
+    // to exeute dropdown animation
+    const [isOpen, setIsOpen] =  useState(false)
+    // for refering dropdown menu for closing effect
+    const dropdownRef = useRef();
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+    function handleClickOutside(event) {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+        }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
     const navigate = useNavigate();
     const [showCart, setShowCart] = useState(true);
 
@@ -136,6 +152,30 @@ export default function CartPage() {
         }
     };
 
+    const logout = async ()=>{
+        try {
+            // sending a post request to logout endpoint to delete token 
+            const response = await axios.post(
+              "http://localhost:9090/api/logout",
+              {},
+              {
+                headers:{
+                  "Content-Type": "application/json"
+                },
+                withCredentials : true
+              }
+          );
+  
+          if(response.status === 200){
+            console.log("Logout Successful");
+            navigate("/");
+          }
+          
+        } catch (error) {
+          console.log("Logout failed..");
+          console.log("Error: " + error);
+        }
+    }
 
     return (
         <div className='cart-main-div'>
@@ -146,6 +186,10 @@ export default function CartPage() {
             </div>
 
             <div className='nav-tail'>
+            <div className="profile-dropdown"
+              ref={dropdownRef}
+              onClick ={()=> setIsOpen(prev=> !prev)}
+            >
                 <div className="profile-icon-div">
                     <img
                     className="profile-icon" 
@@ -153,6 +197,40 @@ export default function CartPage() {
                     alt="profile" 
                     />
                     <p>{user?.username || "GuestAccount"}</p>
+                </div>
+                {
+                    <motion.div
+                        className="options-div"
+                        animate={{top: isOpen? 105: -110}}
+                        transition={{type:"spring"}}
+                        >
+                        <ul>
+                        <motion.li
+                        whileHover={{scale:1.06}}
+                        whileTap={{ x: -50, backgroundColor: "rgb(12, 241, 230)"}}
+                        onClick={()=> console.log("Profile")}
+                        >Profile</motion.li>
+            
+                        <motion.li
+                            whileHover={{scale:1.06}}
+                            whileTap={{ x: -50, backgroundColor: "rgb(12, 241, 230)"}}
+                            onClick={()=> navigate("/customerHome")}
+                        >Home</motion.li>
+            
+                        <motion.li
+                        whileHover={{scale:1.06}}
+                        whileTap={{ x: -50, backgroundColor: "rgb(12, 241, 230)"}}
+                        onClick={()=> console.log("Orders")}
+                        >Orders</motion.li>
+                        <motion.li
+                        whileHover={{scale:1.06}}
+                        whileTap={{ x: -50 , backgroundColor: "rgb(241, 12, 12)"}}
+                        onClick={logout}
+                        >Logout</motion.li>
+                        </ul>
+                    </motion.div>
+                        
+                }
                 </div>
             </div>  
         </header>

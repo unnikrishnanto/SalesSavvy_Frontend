@@ -155,9 +155,9 @@ export default function CustomerDashboard() {
       <PageHeader {...{ user, changeCategory, cartCount }} />
       
       < motion.div className="product-div"
-        initial={{x : 200}}
-        animate={{x : 0}}
-        transition={{type:"tween", ease: "easeInOut", duration: 1 }}
+        initial={{x : -300, opacity: 0}}
+        animate={{x : 0, opacity: 1}}
+        transition={{type:"spring", duration: 1, delay: 0.4 }}
       >
         {
           products.map((p, i)=>{

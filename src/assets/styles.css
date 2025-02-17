@@ -317,7 +317,6 @@ header h2{
     width: 100%;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    background-color: #df9855af;
     margin: 5px;
     margin-top: 65px;
 }
@@ -593,12 +592,13 @@ header h2{
 
 
 .place-order-button {
-    all: unset; /* Resets all inherited and default styles */
-    display: inline-block; /* Ensures it behaves like a button */
-    cursor: pointer; /* Keeps the pointer cursor */
-    background-color: rgb(95, 95, 95);
-    font-weight: 600;
+    appearance: none; /* Reset default button styling */
+    background: rgb(95, 95, 95);
     color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: 600;
     max-width: 400px;
     width: 90%;
     height: 12%;
