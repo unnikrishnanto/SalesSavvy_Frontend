@@ -274,7 +274,7 @@ export default function CartPage() {
                 </div>
             </div>
             {cart.length >0 &&
-                <OrderSummary cart={ cart } amount={amount}/>
+                <OrderSummary cart={ cart } amount={amount} user={user}/>
             }
         </motion.div>
         }

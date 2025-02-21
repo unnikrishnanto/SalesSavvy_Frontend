@@ -1,12 +1,100 @@
 import React from 'react'
 import {motion} from 'framer-motion'
+import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-export default function OrderSummary({cart, amount}) {
+export default function OrderSummary({cart, amount, user}) {
+    const navigate = useNavigate();
     const shipping = (amount*0.1).toFixed(2);
     const totalAmount = (parseFloat(amount) + parseFloat(shipping)).toFixed(2);
-    const makePayment = () =>{
+    const RAZORPAY_KEY_ID = import.meta.env.VITE_RAZORPAY_KEY_ID
 
+    // Razorpay integration for payment
+    const handlePlaceOrder = async () =>{
+      try {
+        // Payload for creating the Order
+        const requsetBody = {
+          totalAmount: totalAmount,
+          cartItems : cart.map((item)=>({
+              productId: item.productId,
+              quantity: item.quantity,
+              price: item.price
+          }))
+        };
+
+        // Create Razorpay order via backend
+        const response = await axios.post(
+          "http://localhost:9090/api/payment/create",
+          requsetBody,{
+          headers:{
+            "Content-Type" : "application/json"
+          },
+          withCredentials: true
+        }
+        );
+        
+        //  If order creation failed
+        if(response.status !== 200){
+          throw new Error(response.data);
+        }
+
+        const razorpayOrderId = response.data?.orderId;
+        // console.log("Order id: " + razorpayOrderId);
+        
+        // Open Razorpay checkout interface
+        const options = {
+          key: RAZORPAY_KEY_ID, // Razorpay Key ID
+          amount: totalAmount * 100, // Razorpay expects amount in paise
+          currency: "INR",
+          name: "SalesSavvy",
+          description: "Test Transaction",
+          order_id: razorpayOrderId, // orderId from backend
+          // This handler will handle the response from the razorpay client
+          handler: async function (response) {
+            try {
+              // Payment success, verify on backend
+              const verifyResponse = await axios.post(
+                "http://localhost:9090/api/payment/verify",
+                {
+                  razorpayOrderId: response.razorpay_order_id, // Ensure key matches backend
+                  razorpayPaymentId: response.razorpay_payment_id, // Ensure key matches backend
+                  razorpaySignature: response.razorpay_signature, // Ensure key matches backend
+                },
+               {
+                headers: { "Content-Type": "application/json" },
+                withCredentials: true,
+              });
+
+            if (verifyResponse.status === 200) {
+              alert("Payment verified successfully!");
+              navigate("/customerHome"); // Redirect to Customer Home Page
+            } else {
+              alert("Payment verification failed: " + verifyResponse.data);
+            }
+          } catch (error) {
+            console.error("Error verifying payment:", error);
+            alert("Payment verification failed. Please try again.");
+          }
+        },
+        prefill: {
+          name: user.username,
+          email: user.email,
+          contact: "9800497855",
+        },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+
+      // OPENING RAZORYPAY CLIENT
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (error) {
+      alert("Payment failed. Please try again.");
+      console.error("Error during checkout:", error);
     }
+  };
+  
   return (
     <div className='order-summary-div'>
         <h2>Order Summary</h2>
@@ -16,7 +104,7 @@ export default function OrderSummary({cart, amount}) {
           <div className='order-item'> <p><b>Total</b></p> <p>{totalAmount}</p></div>
         </div>
         <motion.button
-          onClick={()=>makePayment()}
+          onClick={()=>handlePlaceOrder()}
           className="place-order-button"
           initial={{ opacity: 0, scale: 0.5 }} 
           animate={{ opacity: 1, scale: 1, backgroundColor: 'rgb(95, 95, 95)' }}  
