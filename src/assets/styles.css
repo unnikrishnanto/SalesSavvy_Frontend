@@ -491,6 +491,7 @@ header h2{
     margin: 10px 0px;
     border: none;
     border-radius: 10px;
+    box-shadow: 1px 1px 5px #848383;
 }
 
 .cart-item-img{
@@ -563,6 +564,7 @@ header h2{
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 1px 1px 5px #848383;
 }
 
 .order-summary-div h2 {
@@ -628,4 +630,164 @@ header h2{
 
 
 }
+
+
+/* Styling for Orders page */
+.orders-main-div{
+    height: 99dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.orders-page-header{
+    width: 100%;
+    min-width: 900px;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color:  #dad1d1;
+   
+}
+
+.orders-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.orders-body-heading{
+    width: 90%;
+    align-self: flex-start;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: default;
+}
+.orders-body-heading img {
+    height: 30px;
+    width: 40px;
+    display: inline-block;
+}
+.orders-body-heading p{
+    color: #b75223;
+}
+
+.order-list-div{
+    width: 99%;
+    height:500px;
+    margin: 8px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-evenly; 
+    align-content: flex-start; 
+    overflow-y: auto;
+
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f0f0f0;
+}
+
+/* Custom scrollbar for Webkit (Chrome, Edge, Safari) */
+.order-list-div::-webkit-scrollbar {
+width: 10px;
+}
+
+.order-list-div::-webkit-scrollbar-thumb {
+background-color: #888;
+border-radius: 5px;
+}
+
+.order-list-div::-webkit-scrollbar-track {
+background: #f0f0f0;
+}
+
+.order-item-card{
+    height: 300px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 1px 1px 5px #848383;
+}
+
+.order-item-heading{
+    width: 90%;
+    height: 50px;
+    background-color: #67696b;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.order-item-heading p{
+    color: #ffff;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 400;
+}
+
+
+.order-item-body{
+    width: 500px;
+    height: 250px;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+.order-item-card img{
+    width: 150px;
+    height: 200px;
+    align-self: center;
+    object-fit: fill;
+    margin-left: 20px;
+}
+
+.order-item-description{
+    height: 200px;
+    width: 300px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+@media (max-width: 1250px){
+    .order-list-div{
+        flex-direction: column;
+    }
+}
+
+.order-item-description h3{
+    color: #191a19;
+}
+
+.order-item-description h4{
+    font-size: 12px;
+    color: rgb(76, 76, 76);
+    margin: 10px;
+}
+
+.order-item-description span{
+    color: #191a19;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+.order-item-description p{
+    margin: 5px 0px;
+    color: #6f6f6f;
+    font-weight: 600;
+}
+
+
 

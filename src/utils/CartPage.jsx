@@ -11,7 +11,7 @@ import OrderSummary from './OrderSummary'
 
 export default function CartPage() {
     
-    // to exeute dropdown animation
+    // to execute dropdown animation
     const [isOpen, setIsOpen] =  useState(false)
     // for refering dropdown menu for closing effect
     const dropdownRef = useRef();
@@ -214,13 +214,18 @@ export default function CartPage() {
                         <motion.li
                             whileHover={{scale:1.06}}
                             whileTap={{ x: -50, backgroundColor: "rgb(12, 241, 230)"}}
-                            onClick={()=> navigate("/customerHome")}
+                            onClick={()=> {
+                                setShowCart(false)
+                                setTimeout(() => {
+                                  navigate("/customerHome");
+                                }, 600);  // Wait for exit animation to complete
+                            }}
                         >Home</motion.li>
             
                         <motion.li
                         whileHover={{scale:1.06}}
                         whileTap={{ x: -50, backgroundColor: "rgb(12, 241, 230)"}}
-                        onClick={()=> console.log("Orders")}
+                        onClick={()=> navigate("/orders")}
                         >Orders</motion.li>
                         <motion.li
                         whileHover={{scale:1.06}}

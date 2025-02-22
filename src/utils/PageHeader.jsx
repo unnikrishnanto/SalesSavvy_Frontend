@@ -105,7 +105,7 @@ export default function PageHeader({user,changeCategory, cartCount}) {
             <motion.li
             whileHover={{scale:1.06}}
             whileTap={{ x: -50, backgroundColor: "rgb(12, 241, 230)"}}
-            onClick={()=> console.log("Orders")}
+            onClick={()=> navigate("/orders")}
             >Orders</motion.li>
             <motion.li
             whileHover={{scale:1.06}}
