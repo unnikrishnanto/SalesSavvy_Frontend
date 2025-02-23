@@ -79,8 +79,12 @@ handleFetchingError("Couldn't load Order items")
 }, [handleFetchingError]);
 
 useEffect(()=>{
-    fetchOrderDetails()
-    setIsLoading(false)
+    const fetchOrders = async ()=>{
+        await fetchOrderDetails();
+        setIsLoading(false)
+    }
+    fetchOrders();
+    
 }, [fetchOrderDetails]);
 
 
@@ -141,7 +145,7 @@ const logout = async ()=>{
                      <motion.li
                      whileHover={{scale:1.06}}
                      whileTap={{ x: -50, backgroundColor: "rgb(12, 241, 230)"}}
-                     onClick={()=> console.log("Profile")}
+                     onClick={()=> navigate("/profile")}
                      >Profile</motion.li>
          
                      <motion.li

@@ -7,7 +7,8 @@ import profileIcon from "../assets/images/profile_icon.png"
 import NavBar from './NavBar'
 import axios from 'axios'
 
-export default function CustomerDashboardHeader({user,changeCategory, cartCount}) {
+
+export default function CustomerProfileHeader({user, cartCount}) {
   
   const navigate  = useNavigate();
   // for refering dropdown menu for closing effect
@@ -53,14 +54,11 @@ export default function CustomerDashboardHeader({user,changeCategory, cartCount}
   }
   
   return (
-    <header className='customer-dashboard-header'>
+    <header className='profile-page-header'>
       <div className='logo-div'>
       <img className='header-logo' src={logo} alt="site logo" />
       <h2>SalesSavvy</h2>
       </div>
-
-      <NavBar changeCategory={changeCategory} />
-
 
       <div className='nav-tail'>
         <motion.div 
@@ -93,8 +91,8 @@ export default function CustomerDashboardHeader({user,changeCategory, cartCount}
             <motion.li
             whileHover={{scale:1.06}}
             whileTap={{ x: -50, backgroundColor: "rgb(12, 241, 230)"}}
-            onClick={()=> navigate("/profile")}
-            >Profile</motion.li>
+            onClick={()=> navigate("/Home")}
+            >Home</motion.li>
 
             <motion.li
              whileHover={{scale:1.06}}

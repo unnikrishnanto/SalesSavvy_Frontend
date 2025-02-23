@@ -80,8 +80,11 @@ export default function CartPage() {
     }, [handleFetchingError]);
 
     useEffect(()=>{
-        fetchCartDetails();
-        setIsLoading(false)
+        const fetchCart = async()=>{
+            await fetchCartDetails();
+            setIsLoading(false)
+        }
+        fetchCart();
     }, [fetchCartDetails]);
 
     const calculateTotal = useCallback( ()=>{
@@ -213,7 +216,7 @@ export default function CartPage() {
                         <motion.li
                         whileHover={{scale:1.06}}
                         whileTap={{ x: -50, backgroundColor: "rgb(12, 241, 230)"}}
-                        onClick={()=> console.log("Profile")}
+                        onClick={()=> navigate("/profile")}
                         >Profile</motion.li>
             
                         <motion.li

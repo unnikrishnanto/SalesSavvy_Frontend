@@ -823,5 +823,150 @@ background: #f0f0f0;
     font-weight: 600;
 }
 
+/* profile page styling */
 
+.profile-main-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
+.profile-page-header{
+    width: 100%;
+    min-width: 900px;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color:  #dad1d1;
+    z-index: 1;
+}
+
+.profile-page-header h2{
+    padding-left: 8px;
+    font-size: 15px;
+    color: rgb(235, 90, 60);
+}
+
+.profile-body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.profile-form-div {
+    width: 350px;
+    height: 400px;
+    background-color: #dad1d1;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-form-div form {
+    height: auto;
+}
+.profile-form-div form input{
+    font-size: 15px;
+}
+.profile-form-div form label{
+    font-size: 15px;
+    margin: 5px;
+}
+
+.show-change-password-button{
+    width: 200px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: #EB5A3C;
+    border: none;
+    font-weight: 600;
+    box-shadow: 1px 1px 5px #848383;
+    position: absolute;
+    bottom: -60px;
+    z-index: 2;
+
+}
+
+.password-change-div {
+    width: 350px;
+    height: 400px;
+    background-color: #dad1d1;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50px;
+    z-index: 1;
+}
+
+.password-change-div form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-change-div form label{
+    align-self: flex-start;
+    margin: 5px;
+    font-size: 15px;
+}
+
+.password-change-div form input {
+    width: 250px;
+    height: 30px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    border: none;
+    border-bottom:2px rgb(111, 111, 111) solid ;
+    color: #242424;
+    background-color: #dfdadad7;
+    transition: border 1s;
+}
+
+.change-password-button{
+    margin: 15px;
+    margin-top: 40px;
+    width: 200px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: #EB5A3C;
+    border: none;
+    font-weight: 600;
+    box-shadow: 1px 1px 5px #848383;
+
+}
+
+.close-change-pass-button{
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    border-radius: 5px;
+    border: none;
+}
+
+.password-change-error{
+    color: rgba(250, 0, 0, 0.842);
+    display: none;
+    font-size: 12px;
+    padding: 4px;
+    margin: 5px;
+    font-size: 14;
+    font-weight : 600;
+    border-radius: 4px;
+    border: 1px solid  rgba(250, 0, 0, 0.842);
+    box-shadow: 2px 3px 4px rgb(126, 78, 78);
+}
