@@ -7,10 +7,14 @@ import leftArrow from "../assets/images/left_arrow.png"
 import axios from 'axios'
 import CartItemCard from './CartItemCard'
 import OrderSummary from './OrderSummary'
-
+import LoadingAnimation from './LoadingAnimationComponent'
 
 export default function CartPage() {
     
+    // For loading animation
+    const [isLoading, setIsLoading] = useState(true);
+
+
     // to execute dropdown animation
     const [isOpen, setIsOpen] =  useState(false)
     // for refering dropdown menu for closing effect
@@ -77,6 +81,7 @@ export default function CartPage() {
 
     useEffect(()=>{
         fetchCartDetails();
+        setIsLoading(false)
     }, [fetchCartDetails]);
 
     const calculateTotal = useCallback( ()=>{
@@ -179,7 +184,7 @@ export default function CartPage() {
 
     return (
         <div className='cart-main-div'>
-        <header>
+        <header className='cart-page-header'>
             <div className='logo-div'>
             <img className='header-logo' src={logo} alt="site logo" />
             <h2>SalesSavvy</h2>
@@ -239,52 +244,59 @@ export default function CartPage() {
                 </div>
             </div>  
         </header>
+
+        { isLoading?
+           <LoadingAnimation/>
+        :
         <AnimatePresence>
-        {showCart &&
-        <motion.div
-         initial={{x : 1000}}
-         animate={{x : 0}}
-         transition={{type : 'tween', duration:0.8 , ease: 'easeInOut'}}
-         exit={{x: 1000, opacity: 0}}
-         className='cart-body'>
+            {showCart &&
+            <motion.div
+            initial={{x : 1000}}
+            animate={{x : 0}}
+            transition={{type : 'tween', duration:0.8 , ease: 'easeInOut'}}
+            exit={{x: 1000, opacity: 0}}
+            className='cart-body'>
 
-            <div className='items-summary-div'>
-            <div className='cart-body-headding'>
-                <div 
-                className="home-nav" 
-                onClick={()=> {
-                    setShowCart(false)
-                    setTimeout(() => {
-                        navigate("/customerHome");
-                      }, 600);  // Wait for exit animation to complete
-                }}
-                >
-                    <img src={leftArrow} alt="<-" />
-                    <p>Click here to go back to home</p>
+                <div className='items-summary-div'>
+                <div className='cart-body-headding'>
+                    <div 
+                    className="home-nav" 
+                    onClick={()=> {
+                        setShowCart(false)
+                        setTimeout(() => {
+                            navigate("/customerHome");
+                        }, 600);  // Wait for exit animation to complete
+                    }}
+                    >
+                        <img src={leftArrow} alt="<-" />
+                        <p>Click here to go back to home</p>
+                    </div>
+                    <h2>Shopping Cart</h2>
+                    <p>You hava {cart.length} products in your cart</p>
                 </div>
-                <h2>Shopping Cart</h2>
-                <p>You hava {cart.length} products in your cart</p>
-            </div>
 
-                <div className='cart-items-div'>
-                <ul>
-                    {cart.map((item, index)=>{
-                        return <li
-                            key={item.productId} 
-                        >
-                        <CartItemCard item={item} updateCart = {updateCart} deleteCartItem={deleteCartItem} />
-                        </li>
-                    })}
-                </ul>
+                    <div className='cart-items-div'>
+                    <ul>
+                        {cart.map((item, index)=>{
+                            return <li
+                                key={item.productId} 
+                            >
+                            <CartItemCard item={item} updateCart = {updateCart} deleteCartItem={deleteCartItem} />
+                            </li>
+                        })}
+                    </ul>
+                    </div>
                 </div>
-            </div>
-            {cart.length >0 &&
-                <OrderSummary cart={ cart } amount={amount} user={user}/>
+                {cart.length >0 &&
+                    <OrderSummary cart={ cart } amount={amount} user={user}/>
+                }
+            </motion.div>
             }
-        </motion.div>
-        }
         </AnimatePresence>
 
+        }
+
+     
         </div>
     )
     }

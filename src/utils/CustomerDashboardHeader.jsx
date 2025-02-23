@@ -7,7 +7,7 @@ import profileIcon from "../assets/images/profile_icon.png"
 import NavBar from './NavBar'
 import axios from 'axios'
 
-export default function PageHeader({user,changeCategory, cartCount}) {
+export default function CustomerDashboardHeader({user,changeCategory, cartCount}) {
   
   const navigate  = useNavigate();
   // for refering dropdown menu for closing effect
@@ -53,28 +53,28 @@ export default function PageHeader({user,changeCategory, cartCount}) {
   }
   
   return (
-    <header>
-    <div className='logo-div'>
-    <img className='header-logo' src={logo} alt="site logo" />
-    <h2>SalesSavvy</h2>
-    </div>
+    <header className='customer-dashboard-header'>
+      <div className='logo-div'>
+      <img className='header-logo' src={logo} alt="site logo" />
+      <h2>SalesSavvy</h2>
+      </div>
 
-    <NavBar changeCategory={changeCategory} />
+      <NavBar changeCategory={changeCategory} />
 
 
-    <div className='nav-tail'>
-      <motion.div 
-      className='cart-info'
-      onClick={()=>navigate("/cart")}
-      whileHover={{scale:1.1}}
-      >
-        <img src={cartIcon} alt="" className='logo' />
-        <p className='cart-count-div' >{cartCount || 0}</p>
-      </motion.div>
+      <div className='nav-tail'>
+        <motion.div 
+          className='header-cart-info'
+          onClick={()=>navigate("/cart")}
+          whileHover={{scale:1.1}}
+          >
+          <img src={cartIcon} alt="" className='logo' />
+          <p className='cart-count-div' >{cartCount || 0}</p>
+        </motion.div>
       <div className="profile-dropdown"
         ref={dropdownRef}
         onClick ={()=> setIsOpen(prev=> !prev)}
-      >
+        >
         <div className="profile-icon-div">
             <img
              className="profile-icon" 

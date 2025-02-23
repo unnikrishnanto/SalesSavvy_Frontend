@@ -1,10 +1,17 @@
 import {React, useCallback, useEffect, useState} from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
-import {motion} from "framer-motion"
-import PageHeader from "./PageHeader"
+import {motion, AnimatePresence} from "framer-motion"
+import CustomerDashboardHeader from "./CustomerDashboardHeader"
 import ProductCard from "./ProductCard"
+import LoadingAnimation from './LoadingAnimationComponent'
+
+
 export default function CustomerDashboard() {
+
+  // For loading animation
+  const [isLoading, setIsLoading] = useState(true);
+
   // for route navigation
   const navigate = useNavigate();
 
@@ -71,7 +78,7 @@ export default function CustomerDashboard() {
           withCredentials: true
         });
     
-        if(response.status== 200){
+        if(response.status === 200){
           
           setUser(response.data?.user);
         }
@@ -108,6 +115,7 @@ export default function CustomerDashboard() {
       try {
         // Promise all will make parallel API calls
         await Promise.all([fetchUser(), fetchCartCount(), fetchProducts("shirts")]);
+        setIsLoading(false)
       } catch (error) {
         console.error("Error in initial data fetching:", error);
       }
@@ -117,8 +125,11 @@ export default function CustomerDashboard() {
 
   },[fetchProducts, fetchUser, fetchCartCount])
 
-  const changeCategory = (category)=>{
-    fetchProducts(category)
+  const changeCategory = (newCategory)=>{
+    setProducts([]); // Clear the product list to trigger exit animation
+    setTimeout(() => {
+      fetchProducts(newCategory); // Fetch new products 
+    }, 300); // 300ms delay for exit animation 
   }
 
 
@@ -152,22 +163,23 @@ export default function CustomerDashboard() {
 
   return (
     <>		
-      <PageHeader {...{ user, changeCategory, cartCount }} />
+      <CustomerDashboardHeader {...{ user, changeCategory, cartCount }} />
       
-      < motion.div className="product-div"
-        initial={{x : -300, opacity: 0}}
-        animate={{x : 0, opacity: 1}}
-        transition={{type:"spring", duration: 1, delay: 0.4 }}
-      >
-        {
-          products.map((p, i)=>{
-            return <ProductCard key={p.productId} product={p} addToCart= {addToCart}/>
-          })
-        
-        }
- 
-      </motion.div>
+      {isLoading ?
+       <LoadingAnimation/>
+      : 
+      < motion.div className="product-div">
+          <AnimatePresence mode='wait'>
+          {
+            products.map((p, i)=>{
+              return <ProductCard key={p.productId} product={p} addToCart= {addToCart}/>
+            })
+          }
+          </AnimatePresence>
+        </motion.div>
+      }
 
+    
 
     </>
   )

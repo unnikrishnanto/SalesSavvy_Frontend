@@ -98,10 +98,10 @@ export default function OrderSummary({cart, amount, user}) {
   return (
     <div className='order-summary-div'>
         <h2>Order Summary</h2>
-        <div className='orders-div'>
-          <div className='order-item'> <p><b>SubTotal</b></p> <p>{amount}</p></div>
-          <div className='order-item'> <p><b>Shipping</b></p> <p>{shipping}</p></div>
-          <div className='order-item'> <p><b>Total</b></p> <p>{totalAmount}</p></div>
+        <div className='orders-summary-list-div'>
+          <div className='order-summary-item'> <p><b>SubTotal</b></p> <p>{amount}</p></div>
+          <div className='order-summary-item'> <p><b>Shipping</b></p> <p>{shipping}</p></div>
+          <div className='order-summary-item'> <p><b>Total</b></p> <p>{totalAmount}</p></div>
         </div>
         <motion.button
           onClick={()=>handlePlaceOrder()}

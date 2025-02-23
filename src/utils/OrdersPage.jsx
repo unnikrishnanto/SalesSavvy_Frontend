@@ -6,7 +6,13 @@ import logo from "../assets/images/salessavvy_logo.png"
 import profileIcon from "../assets/images/profile_icon.png"
 import leftArrow from "../assets/images/left_arrow.png"
 
+import LoadingAnimation from './LoadingAnimationComponent'
+
 export default function OrdersPage() {
+
+// For loading animation
+const [isLoading, setIsLoading] = useState(true);
+
 
 // to execute dropdown animation
 const [isOpen, setIsOpen] =  useState(false)
@@ -74,6 +80,7 @@ handleFetchingError("Couldn't load Order items")
 
 useEffect(()=>{
     fetchOrderDetails()
+    setIsLoading(false)
 }, [fetchOrderDetails]);
 
 
@@ -165,58 +172,66 @@ const logout = async ()=>{
              </div>
          </div>  
      </header>
-     <AnimatePresence>
-     {showOrders &&
-     <motion.div
-      initial={{x : 1000}}
-      animate={{x : 0}}
-      transition={{type : 'tween', duration:0.8 , ease: 'easeInOut'}}
-      exit={{x: 1000, opacity: 0}}
-      className='orders-body'>
-            <div className='orders-body-heading'>
-                <div 
-                className="home-nav" 
-                onClick={()=> {
-                    setShowOrders(false)
-                    setTimeout(() => {
-                        navigate("/customerHome");
-                      }, 600);  // Wait for exit animation to complete
-                }}
-                >
-                    <img src={leftArrow} alt="<-" />
-                    <p>Click here to go back to home</p>
+     {
+        isLoading ? 
+            <LoadingAnimation/>
+        :
+        <AnimatePresence>
+         {showOrders &&
+            <motion.div
+            initial={{x : 1000}}
+            animate={{x : 0}}
+            transition={{type : 'tween', duration:0.8 , ease: 'easeInOut'}}
+            exit={{x: 1000, opacity: 0}}
+            className='orders-body'>
+                <div className='orders-body-heading'>
+                    <div 
+                    className="home-nav" 
+                    onClick={()=> {
+                        setShowOrders(false)
+                        setTimeout(() => {
+                            navigate("/customerHome");
+                            }, 600);  // Wait for exit animation to complete
+                    }}
+                    >
+                        <img src={leftArrow} alt="<-" />
+                        <p>Click here to go back to home</p>
+                    </div>
+                    <h2>Your Orders</h2>
                 </div>
-                <h2>Your Orders</h2>
+                <div className="order-list-div">
+                    {orders.map((item)=>{
+                        return <div
+                                    className="order-item-card"
+                                    key={item.productId}
+                                    >
+                                <div className="order-item-heading">
+                                    <p>Order ID: {item.orderId}</p>
+                                </div>
+                                <div className="order-item-body">
+                                    <img src={item.imgUrl} alt="" />
+                                    <div className="order-item-description" >
+                                    <h3>{item.name}</h3>
+                                    <h4>{item.description}</h4>    
+                                    <p><span>Quantity : </span>{item.quantity}</p>
+                                    <p><span>Price Per Unit:</span> ₹ {item.pricePerUnit}</p>
+                                    <p><span>Total :</span> ₹ {item.totalAmount}</p>
+                                    </div> 
+                                </div>
+                                    
+                            </div> 
+                        })
+                    }
             </div>
-            <div className="order-list-div">
-                {orders.map((item)=>{
-                    return <div
-                             className="order-item-card"
-                             key={item.productId}
-                             >
-                            <div className="order-item-heading">
-                                <p>Order ID: {item.orderId}</p>
-                            </div>
-                            <div className="order-item-body">
-                             <img src={item.imgUrl} alt="" />
-                             <div className="order-item-description" >
-                                <h3>{item.name}</h3>
-                                <h4>{item.description}</h4>    
-                                <p><span>Quantity : </span>{item.quantity}</p>
-                                <p><span>Price Per Unit:</span> ₹ {item.pricePerUnit}</p>
-                                <p><span>Total :</span> ₹ {item.totalAmount}</p>
-                             </div> 
-                            </div>
-                             
-                        </div> 
-                    })
-                }
-        </div>
-     </motion.div>
-     }
-     </AnimatePresence>
+            </motion.div>
+         }
+        </AnimatePresence>
 
-     </div>
+
+
+     }
+
+         </div>
  )
  }
 
