@@ -330,7 +330,7 @@ const handleSubmit = async (e)=>{
                             exit={{y: -109, opacity: 0.9, scale: 0.95}}
                             transition={{type:'tween', duration: 0.5, ease: 'easeInOut' }}
                             >
-                          Changing Password
+                          Change Password
                         </motion.button>
                     }
                     </AnimatePresence>

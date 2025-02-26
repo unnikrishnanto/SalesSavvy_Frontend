@@ -3,7 +3,7 @@ import {motion} from 'framer-motion'
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-export default function OrderSummary({cart, amount, user}) {
+export default function OrderSummary({cart, setcart, amount, user, fetchCartDetails}) {
     const navigate = useNavigate();
     const shipping = (amount*0.1).toFixed(2);
     const totalAmount = (parseFloat(amount) + parseFloat(shipping)).toFixed(2);
@@ -12,6 +12,16 @@ export default function OrderSummary({cart, amount, user}) {
     // Razorpay integration for payment
     const handlePlaceOrder = async () =>{
       try {
+        // This is for making sure that the products in the cart are available before making payment
+        const currentCount = cart.length;
+        const updatedcart = await fetchCartDetails(); // Ensure fresh data
+
+        if (!updatedcart || updatedcart.length !== currentCount) { 
+            alert("Some Items in your cart are no longer available.");
+            setcart(updatedcart);
+            return;
+        }
+
         // Payload for creating the Order
         const requsetBody = {
           totalAmount: totalAmount,

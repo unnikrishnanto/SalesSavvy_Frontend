@@ -72,6 +72,8 @@ export default function CartPage() {
         console.log(response.data);
         setUser(response.data.user);
         setCart(response.data.products);
+        // This return the count of products in the cart for verification during order palacement
+        return response.data.products;
     }
     } catch (error) {
     console.log(error);
@@ -179,7 +181,7 @@ export default function CartPage() {
             navigate("/");
           }
           
-        } catch (error) {
+        } catch (error) {  
           console.log("Logout failed..");
           console.log("Error: " + error);
         }
@@ -291,7 +293,7 @@ export default function CartPage() {
                     </div>
                 </div>
                 {cart.length >0 &&
-                    <OrderSummary cart={ cart } amount={amount} user={user}/>
+                    <OrderSummary cart={ cart } setCart={setCart} amount={amount} user={user} fetchCartDetails={fetchCartDetails}/>
                 }
             </motion.div>
             }

@@ -169,7 +169,7 @@ export default function CustomerDashboard() {
        <LoadingAnimation/>
       : 
       < motion.div className="product-div">
-          <AnimatePresence mode='wait'>
+          <AnimatePresence>
           {
             products.map((p, i)=>{
               return <ProductCard key={p.productId} product={p} addToCart= {addToCart}/>

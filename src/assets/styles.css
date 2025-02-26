@@ -193,6 +193,14 @@ form select{
     margin-top: 45dvh;
 }
 
+.loading-animation-div{
+    width: auto;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 /* Customer Dashboard Styling */
 
@@ -969,4 +977,387 @@ background: #f0f0f0;
     border-radius: 4px;
     border: 1px solid  rgba(250, 0, 0, 0.842);
     box-shadow: 2px 3px 4px rgb(126, 78, 78);
+}
+
+/* Admin page styling */
+
+.admin-main-div{
+    width: 99dvw;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: linear-gradient(135deg, #000000, #1A103D);
+    overflow-x: hidden;
+}
+
+.admin-page-header{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #2C1E5F, #493D9E, #6A5ACD);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.admin-logo-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.admin-logo-div h2{
+    margin-left: 15px;
+    background: linear-gradient(90deg, #00FFFF, #00FF00); 
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+.admin-header-tail{
+    width: 200px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.admin-header-tail h3{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #e38b1f, #ff2e63);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.admin-logout-button{
+    width: 90px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: 700;
+    background-color:  #948eb6;
+    border: 3px solid #79D7BE;
+    color: #a2f7e0;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgb(141, 136, 136);
+}
+
+.spacing-div{
+    height: 60px;
+    width: 90%;
+    position: relative;
+}
+
+.admin-page-body{
+    width: 90%;
+    min-width: 800px;
+    align-self: center;
+    padding: 10px 5px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 20px;
+}
+
+.admin-option-div {
+    height: 200px;
+    width: 90%;
+    align-self: center;
+    justify-self: center;
+    background: linear-gradient(135deg, #6A5ACD, #9370DB, #493D9E); ;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 1px 1px 5px rgb(55, 54, 54);
+}
+
+.admin-option-div h4 {
+    margin: 10px;
+    color: #FFFFFF; /* Pure White */
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.3);
+}
+
+.admin-option-div p{
+    color: #c9c7c7f5;
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: 10px;
+    align-self: start;
+    padding-top: 20px;
+}
+
+.admin-option-button {
+    width: 250px;
+    height: 45px;
+    background-color: #493D9E;
+    color: white;
+    margin-top: 50px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 1px 1px 4px rgb(113, 25, 200);
+}
+
+/* Styling for popups on admin page */
+
+.admin-popup{
+    height: 90dvh;
+    width: 100dvw;
+    position: fixed;
+    top: 8dvh;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(1px); /* Slight blur effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.admin-popup h3 {
+    margin: 10px;
+}
+
+.view-all-products-div, 
+.view-all-users-div{
+    position: relative;
+    width: 80%;
+    height: 90%;
+    background: #1e1e2e; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+   
+}
+
+.admin-popup button{
+    width: 100px;
+    height: 40px;
+    background-color: #ff4d4d; /* Red shade */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 22px;
+    font-weight: 700;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    letter-spacing: 1px;
+    margin: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.admin-table-container{
+    overflow-y: auto;
+    width: 100%;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+  background-color: #28224b; /* Darker background */
+  color: #ffffff; /* Light text */
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #6A5ACD; /* Outer border */
+}
+
+.admin-table th, 
+.admin-table td {
+  padding: 12px 15px;
+  border: 1px solid #493D9E; /* Cell borders */
+}
+
+.admin-table th {
+    background: linear-gradient(135deg, #6A5ACD, #493D9E); /* Gradient header */
+    color: white;
+    font-weight: bold;
+    border-bottom: 3px solid #30276a; /* Stronger bottom border */
+}
+.admin-table tr:nth-child(even) {
+    background-color: #322c6b; /* Alternate row color */
+}
+
+.add-product-form-container {
+    position: relative;
+    width: 80%;
+    height: 90%;
+    background: #1e1e2e; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+
+.add-product-form,
+.edit-user-form {
+    width: 600px;
+    background: #2c2758; /* Dark-themed container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.add-product-form div,
+.edit-user-form div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 5%;
+    align-items: center;
+}
+
+.add-product-form label,
+.delete-product-form label,
+.edit-user-form label{
+    color: #d3d3d3; 
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.add-product-form input,
+.add-product-form textarea,
+.edit-user-form input{
+    width: 70%;
+    min-width: 20%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #5748b9;
+    border-radius: 5px;
+    background: #413c75; 
+    font-size: 16px;
+    color: #ffffff; 
+    resize: none; 
+}
+
+.add-product-form button,
+.edit-user-form button {
+    width: 200px;
+    background: #6A5ACD; /* Soft purple */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.delete-product-form-container,
+.fetch-user-form-container,
+.modify-user-form-container,
+.business-report-form-container {
+    position: relative;
+    width: 60%;
+    height: auto;
+    background: #1e1e2e; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+
+.delete-product-form,
+.fetch-user-form{
+    width: 600px;
+    background: #2c2758; /* Dark-themed container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-product-form input,
+.fetch-user-form input {
+    width: 200px;
+    min-width: 20%;
+    padding: 10px;
+    margin: 15px 0px;
+    border: 1px solid #5748b9;
+    border-radius: 5px;
+    background: #413c75; 
+    font-size: 16px;
+    color: #ffffff; 
+    display:block;
+}
+
+.delete-product-form button,
+.fetch-user-form button{
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    background: #6A5ACD;
+}
+
+
+.modify-user-form,
+.business-report-form {
+    width: 600px;
+    background: #2c2758; /* Dark-themed container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modify-user-form input,
+.business-report-form input {
+    width: 200px;
+    min-width: 20%;
+    padding: 10px;
+    margin: 15px 0px;
+    border: 1px solid #5748b9;
+    border-radius: 5px;
+    background: #413c75; 
+    font-size: 16px;
+    color: #ffffff; 
+    display:block;
+}
+
+.modify-user-form button, 
+.business-report-form button {
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    background: #6A5ACD;
+}
+
+
+.no-transactions-div{
+    width: auto;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
 }
