@@ -5,6 +5,7 @@ import axios from "axios";
 import logo from "../assets/images/salessavvy_logo.png"
 import profileIcon from "../assets/images/profile_icon.png"
 import leftArrow from "../assets/images/left_arrow.png"
+import defaultImage from '../assets/images/default_image.png'
 
 import LoadingAnimation from '../components/LoadingAnimationComponent'
 
@@ -213,7 +214,13 @@ const logout = async ()=>{
                                     <p>Order ID: {item.orderId}</p>
                                 </div>
                                 <div className="order-item-body">
-                                    <img src={item.imgUrl} alt="" />
+                                    <img
+                                        src={item.imgUrl || defaultImage} 
+                                        alt="Image Not Found" 
+                                        onError={e=>{
+                                            e.target.onerror = null;  // Prevent infinite loop 
+                                            e.target.src =defaultImage
+                                            }} />
                                     <div className="order-item-description" >
                                     <h3>{item.name}</h3>
                                     <h4>{item.description}</h4>    

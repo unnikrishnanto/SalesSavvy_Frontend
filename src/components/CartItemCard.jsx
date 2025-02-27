@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import deleteIcon from "../assets/images/delete_icon.svg"
+import defaultImage from '../assets/images/default_image.png'
 
 export default function CartItemCard({item, updateCart, deleteCartItem}) { 
  
@@ -45,8 +46,12 @@ export default function CartItemCard({item, updateCart, deleteCartItem}) {
         transition={{type:'tween'}}
          className='cart-item-card'>
             <img 
-            src={item.imgUrl} 
-            className='cart-item-img' 
+            src={item.imgUrl || defaultImage} 
+            className='cart-item-img'
+            onError={e=>{
+              e.target.onerror = null;  // Prevent infinite loop 
+              e.target.src =defaultImage
+              }}
             alt="image not found" />
             <div className='item-details'>
                 <p>{item.name}</p>
