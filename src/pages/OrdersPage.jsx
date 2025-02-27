@@ -6,7 +6,7 @@ import logo from "../assets/images/salessavvy_logo.png"
 import profileIcon from "../assets/images/profile_icon.png"
 import leftArrow from "../assets/images/left_arrow.png"
 
-import LoadingAnimation from './LoadingAnimationComponent'
+import LoadingAnimation from '../components/LoadingAnimationComponent'
 
 export default function OrdersPage() {
 

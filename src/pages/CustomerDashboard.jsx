@@ -2,9 +2,9 @@ import {React, useCallback, useEffect, useState} from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import {motion, AnimatePresence} from "framer-motion"
-import CustomerDashboardHeader from "./CustomerDashboardHeader"
-import ProductCard from "./ProductCard"
-import LoadingAnimation from './LoadingAnimationComponent'
+import CustomerDashboardHeader from "../components/CustomerDashboardHeader"
+import ProductCard from "../components/ProductCard"
+import LoadingAnimation from '../components/LoadingAnimationComponent'
 
 
 export default function CustomerDashboard() {

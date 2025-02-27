@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import leftArrow from "../assets/images/left_arrow.png"
-import LoadingAnimation from './LoadingAnimationComponent'
-import CustomerProfileHeader from "./CustomerProfileHeader";
-import ChangePasswordComponent from "./ChangePasswordComponent";
+import LoadingAnimation from '../components/LoadingAnimationComponent'
+import CustomerProfileHeader from "../components/CustomerProfileHeader";
+import ChangePasswordComponent from "../auth/ChangePasswordComponent";
 
 export default function CustomerProfile() {
 

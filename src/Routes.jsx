@@ -1,12 +1,12 @@
 import React from 'react'
 import {Routes, Route, BrowserRouter} from "react-router-dom"
-import SignUp from './utils/SignUp'
-import Login from './utils/Login'
-import CustomerDashboard from './utils/CustomerDashboard'
-import AdminDashboard from './utils/AdminDashboard'
-import CartPage from './utils/CartPage'
-import OrdersPage from './utils/OrdersPage'
-import CustomerProfile from './utils/CustomerProfile'
+import SignUp from './auth/SignUp'
+import Login from './auth/Login'
+import CustomerDashboard from './pages/CustomerDashboard'
+import AdminDashboard from './pages/AdminDashboard'
+import CartPage from './pages/CartPage'
+import OrdersPage from './pages/OrdersPage'
+import CustomerProfile from './pages/CustomerProfile'
 
 
 export default function AppRoutes() {

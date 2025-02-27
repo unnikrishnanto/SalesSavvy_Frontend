@@ -5,9 +5,9 @@ import logo from "../assets/images/salessavvy_logo.png"
 import profileIcon from "../assets/images/profile_icon.png"
 import leftArrow from "../assets/images/left_arrow.png"
 import axios from 'axios'
-import CartItemCard from './CartItemCard'
-import OrderSummary from './OrderSummary'
-import LoadingAnimation from './LoadingAnimationComponent'
+import CartItemCard from '../components/CartItemCard'
+import OrderSummary from '../components/OrderSummary'
+import LoadingAnimation from '../components/LoadingAnimationComponent'
 
 export default function CartPage() {
     
