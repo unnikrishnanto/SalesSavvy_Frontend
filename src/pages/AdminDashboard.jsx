@@ -6,13 +6,13 @@ import logo from '../assets/images/salessavvy_logo.png'
 import ViewAllProducts from '../features/ViewAllProducts'
 import ViewAllUsers from '../features/ViewAllUsers'
 import AddProduct from '../features/AddProduct'
-import DeleteProduct from '../features/DeleteProduct'
 import ViewUserDetails from '../features/ViewUserDetails'
 import ModifyUserDetails from '../features/ModifyUserDetails'
 import ReportByDate from '../features/ReportByDate'
 import ReportByMonth from '../features/ReportByMonth'
 import ReportByYear from '../features/ReportByYear'
 import OverallReport from '../features/OverallReport'
+import ManageProduct from '../features/ManageProduct'
 
 export default function AdminDashboard() {
 
@@ -190,8 +190,8 @@ export default function AdminDashboard() {
             whileHover={{scale: 1.05}}
             whileTap={{scale: 0.95}}
             onClick={()=>openPopup(3)}
-          > Delete Product </motion.button>
-          <h4>Remove an existing product from the catalog.</h4>
+          >  Manage Product </motion.button>
+          <h4>Update or remove an existing product from the catalog.</h4>
           <p>Team : Product Management</p>
         </motion.div>
 
@@ -306,7 +306,7 @@ export default function AdminDashboard() {
       
       <AnimatePresence>
         {showOptionsPopup[3] &&
-            <DeleteProduct setShowOptionsPopup={setShowOptionsPopup} handleFetchingError={handleFetchingError}/>
+            <ManageProduct setShowOptionsPopup={setShowOptionsPopup} handleFetchingError={handleFetchingError}/>
         }
       </AnimatePresence>
       

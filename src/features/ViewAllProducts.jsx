@@ -76,6 +76,7 @@ export default function ViewAllProducts({setShowOptionsPopup, handleFetchingErro
                         <th>PRODUCT ID</th>
                         <th>NAME</th>
                         <th>DESCRIPTION</th>
+                        <th>CATEGORY ID</th>
                         <th>CATEGORY</th>
                         <th>PRICE (₹)</th>
                         <th>STOCK</th>
@@ -91,9 +92,10 @@ export default function ViewAllProducts({setShowOptionsPopup, handleFetchingErro
                     
                     products.map((p, index) =>{
                         return (<tr key={index} >
-                                <td>{p.productId}</td>
+                                <td className='table-id-data'>{p.productId}</td>
                                 <td>{p.name}</td>
                                 <td>{p.description}</td>
+                                <td className='table-id-data'>{p.categoryId}</td>
                                 <td>{p.category}</td>
                                 <td>{p.price.toFixed(2)}</td>
                                 <td>{p.stock}</td>

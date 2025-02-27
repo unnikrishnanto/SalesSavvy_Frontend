@@ -92,7 +92,7 @@ export default function ViewAllUsers({setShowOptionsPopup, handleFetchingError})
                     
                     users.map((p, index) =>{
                         return (<tr key={index} >
-                                <td>{p.userId}</td>
+                                <td className='table-id-data'>{p.userId}</td>
                                 <td>{p.username}</td>
                                 <td>{p.email}</td>
                                 <td>{p.role}</td>

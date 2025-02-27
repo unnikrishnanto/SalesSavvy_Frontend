@@ -1193,10 +1193,14 @@ background: #f0f0f0;
     background-color: #322c6b; /* Alternate row color */
 }
 
+.table-id-data{
+    text-align: center;
+}
+
 .add-product-form-container {
     position: relative;
     width: 80%;
-    height: 90%;
+    height: auto;
     background: #1e1e2e; 
     padding: 20px;
     border-radius: 10px;
@@ -1209,6 +1213,7 @@ background: #f0f0f0;
 
 
 .add-product-form,
+.update-product-form,
 .edit-user-form {
     width: 600px;
     background: #2c2758; /* Dark-themed container */
@@ -1221,7 +1226,8 @@ background: #f0f0f0;
     justify-content: center;
 }
 .add-product-form div,
-.edit-user-form div{
+.edit-user-form div,
+.update-product-form div{
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -1231,7 +1237,8 @@ background: #f0f0f0;
 
 .add-product-form label,
 .delete-product-form label,
-.edit-user-form label{
+.edit-user-form label
+.update-product-form label{
     color: #d3d3d3; 
     font-weight: bold;
     margin-bottom: 20px;
@@ -1239,7 +1246,9 @@ background: #f0f0f0;
 
 .add-product-form input,
 .add-product-form textarea,
-.edit-user-form input{
+.edit-user-form input,
+.update-product-form input, 
+.update-product-form textarea {
     width: 70%;
     min-width: 20%;
     padding: 10px;
@@ -1253,7 +1262,8 @@ background: #f0f0f0;
 }
 
 .add-product-form button,
-.edit-user-form button {
+.edit-user-form button,
+.update-product-form button {
     width: 200px;
     background: #6A5ACD; /* Soft purple */
     color: white;
@@ -1262,7 +1272,7 @@ background: #f0f0f0;
     font-weight: bold;
     cursor: pointer;
 }
-.delete-product-form-container,
+.manage-product-form-container,
 .fetch-user-form-container,
 .modify-user-form-container,
 .business-report-form-container {

@@ -72,7 +72,11 @@ export default function OverallReport({setShowOptionsPopup, handleFetchingError}
               </div> 
               :
               report?.totalRevenue > 0 ?
-                <form  className='business-report-form'>
+                <motion.form  
+                  className='business-report-form'
+                  initial={{scale: 0, opacity: 0}}
+                  animate={{scale: 1, opacity: 1}}
+                  transition={{type:"spring", duration:1.2}}>
                     <div>
                         <label>Total Revenue</label>
                         <input 
@@ -98,7 +102,7 @@ export default function OverallReport({setShowOptionsPopup, handleFetchingError}
 
                         }
                     </table>
-                </form>
+                </motion.form>
              :
                 <div className='no-transactions-div'>
                     No Transactions....
