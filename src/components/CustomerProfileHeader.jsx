@@ -48,8 +48,12 @@ export default function CustomerProfileHeader({user, cartCount}) {
         }
         
       } catch (error) {
-        console.log("Logout failed..");
-        console.log("Error: " + error);
+        if(error.response?.status === 401){
+          navigate("/")
+        }else{
+          alert("Logout failed..");
+          console.log("Error: " + error);
+        }
       }
   }
   
@@ -91,7 +95,7 @@ export default function CustomerProfileHeader({user, cartCount}) {
             <motion.li
             whileHover={{scale:1.06}}
             whileTap={{ x: -50, backgroundColor: "rgb(12, 241, 230)"}}
-            onClick={()=> navigate("/Home")}
+            onClick={()=> navigate("/customerHome")}
             >Home</motion.li>
 
             <motion.li

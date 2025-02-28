@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import leftArrow from "../assets/images/left_arrow.png"
-import LoadingAnimation from '../components/LoadingAnimationComponent'
+import LoadingAnimation from '../components/CustomerLoadingAnimation'
 import CustomerProfileHeader from "../components/CustomerProfileHeader";
 import ChangePasswordComponent from "../auth/ChangePasswordComponent";
 

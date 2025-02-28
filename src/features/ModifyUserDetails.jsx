@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import axios from 'axios';
-import { hatch, hourglass } from 'ldrs'
+import { hourglass } from 'ldrs'
+import AdminLoadingAnimation from '../components/AdminLoadingAnimation';
   
   
 export default function ModifyUserDetails({setShowOptionsPopup, handleFetchingError}) {
   // Registering loading animation
   hourglass.register();
-  hatch.register();
 
   const [isFetching, setIsFetching] = useState(false);  
   // For automatically focusing on input field on load
@@ -79,15 +79,7 @@ export default function ModifyUserDetails({setShowOptionsPopup, handleFetchingEr
             <h3>USER DETAILS</h3>
             {!user?
             isFetching ?
-            <div className='loading-animation-div'>
-                <l-hatch
-                size="35"
-                stroke="3.5"
-                speed="1.5" 
-                color="rgb(39, 173, 101)" 
-                ></l-hatch>
-                <h3>Fetching User details..</h3>    
-            </div>
+                <AdminLoadingAnimation message ={"Fetching User details"}/>
             :
             <motion.form 
               onSubmit={handleSubmit} 

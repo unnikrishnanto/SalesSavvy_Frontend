@@ -47,8 +47,12 @@ export default function CustomerDashboardHeader({user,changeCategory, cartCount}
         }
         
       } catch (error) {
-        console.log("Logout failed..");
-        console.log("Error: " + error);
+        if(error.response?.status === 401){
+          navigate("/")
+        }else{
+          alert("Logout failed..");
+          console.log("Error: " + error);
+        }
       }
   }
   

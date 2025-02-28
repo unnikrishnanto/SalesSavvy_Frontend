@@ -7,7 +7,7 @@ import leftArrow from "../assets/images/left_arrow.png"
 import axios from 'axios'
 import CartItemCard from '../components/CartItemCard'
 import OrderSummary from '../components/OrderSummary'
-import LoadingAnimation from '../components/LoadingAnimationComponent'
+import LoadingAnimation from '../components/CustomerLoadingAnimation'
 
 export default function CartPage() {
     
@@ -134,7 +134,6 @@ export default function CartPage() {
 
     const deleteCartItem =async (prodId)=>{
         try {
-
             const response = await axios({
 
                 url:'http://localhost:9090/api/cart/remove',
@@ -182,8 +181,12 @@ export default function CartPage() {
           }
           
         } catch (error) {  
-          console.log("Logout failed..");
-          console.log("Error: " + error);
+            if(error.response?.status === 401){
+                navigate("/")
+            }else{
+                alert("Logout failed..");
+                console.log("Error: " + error);
+            }
         }
     }
 

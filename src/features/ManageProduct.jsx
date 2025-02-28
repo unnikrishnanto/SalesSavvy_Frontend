@@ -1,14 +1,10 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import axios from 'axios';
-import { hatch } from 'ldrs'
+import AdminLoadingAnimation from '../components/AdminLoadingAnimation';
   
 
 export default function ManageProduct({setShowOptionsPopup, handleFetchingError}) {
-  // Registering loading animation
-  hatch.register()
-
-  
   const [isDeleting, setIsDeleting] = useState(false); 
   const [isFetching, setIsFetching] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false); 
@@ -167,36 +163,12 @@ console.log(trimmedProduct);
         <motion.div className="manage-product-form-container">
             <h3>MANAGE PRODUCT</h3>
             {isFetching ?
-                <div className='loading-animation-div'>
-                  <l-hatch
-                  size="35"
-                  stroke="3.5"
-                  speed="1.5" 
-                  color="rgb(39, 173, 101)" 
-                  ></l-hatch>
-                  <h3>Fetching product details from database..</h3>    
-                </div>
+                <AdminLoadingAnimation message={"Fetching product details from database"}/>
               :
                 isDeleting?
-                  <div className='loading-animation-div'>
-                      <l-hatch
-                      size="35"
-                      stroke="3.5"
-                      speed="1.5" 
-                      color="rgb(39, 173, 101)" 
-                      ></l-hatch>
-                      <h3>Removing the product from database..</h3>    
-                  </div>
+                  <AdminLoadingAnimation message={"Removing the product from database"}/>
                 : isUpdating?
-                <div className='loading-animation-div'>
-                  <l-hatch
-                  size="35"
-                  stroke="3.5"
-                  speed="1.5" 
-                  color="rgb(39, 173, 101)" 
-                  ></l-hatch>
-                  <h3>Updating the product data..</h3>    
-                </div>
+                  <AdminLoadingAnimation message={"Updating the product data"} />    
                 :
                 product ?
                   <motion.form 

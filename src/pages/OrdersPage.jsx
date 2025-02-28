@@ -7,7 +7,7 @@ import profileIcon from "../assets/images/profile_icon.png"
 import leftArrow from "../assets/images/left_arrow.png"
 import defaultImage from '../assets/images/default_image.png'
 
-import LoadingAnimation from '../components/LoadingAnimationComponent'
+import LoadingAnimation from '../components/CustomerLoadingAnimation'
 
 export default function OrdersPage() {
 
@@ -110,8 +110,12 @@ const logout = async ()=>{
     }
     
     } catch (error) {
-    console.log("Logout failed..");
-    console.log("Error: " + error);
+        if(error.response?.status === 401){
+            navigate("/")
+        }else{
+            alert("Logout failed..");
+            console.log("Error: " + error);
+        }
     }
 }
 

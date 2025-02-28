@@ -1,11 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import axios from 'axios';
-import { hatch } from 'ldrs';
+import AdminLoadingAnimation from '../components/AdminLoadingAnimation';
 
 export default function ReportByYear({setShowOptionsPopup, handleFetchingError}) {
-  
-  hatch.register();
 
   // For automatically focusing on input field on load
   const inputRef = useRef(null);
@@ -69,15 +67,7 @@ export default function ReportByYear({setShowOptionsPopup, handleFetchingError})
           <h3>BUSINESS REPORT BY YEAR</h3>
           
           {isFetching ?
-            <div className='loading-animation-div'>
-                <l-hatch
-                size="35"
-                stroke="3.5"
-                speed="1.5" 
-                color="rgb(39, 173, 101)" 
-                ></l-hatch>
-                <h3>Fetching Report..</h3>    
-              </div> 
+              <AdminLoadingAnimation message={"Fetching Report"} />
               :
               !report ?
                 <motion.form 

@@ -101,9 +101,13 @@ export default function AdminDashboard() {
     }
     
     } catch (error) {
-      setLogoutOpacity(1);
-      alert("Logout failed..");
-      console.log("Error: " + error);
+      if(error.response?.status === 401){
+        navigate("/")
+      }else{
+        setLogoutOpacity(1);
+        alert("Logout failed..");
+        console.log("Error: " + error);
+      }
     }
     }, 1000)
   }

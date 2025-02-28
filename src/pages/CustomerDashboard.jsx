@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import {motion, AnimatePresence} from "framer-motion"
 import CustomerDashboardHeader from "../components/CustomerDashboardHeader"
 import ProductCard from "../components/ProductCard"
-import LoadingAnimation from '../components/LoadingAnimationComponent'
+import LoadingAnimation from '../components/CustomerLoadingAnimation'
 
 
 export default function CustomerDashboard() {
