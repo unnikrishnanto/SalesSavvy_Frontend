@@ -8,9 +8,14 @@ import axios from 'axios'
 import CartItemCard from '../components/CartItemCard'
 import OrderSummary from '../components/OrderSummary'
 import LoadingAnimation from '../components/CustomerLoadingAnimation'
+import { trefoil } from 'ldrs'
 
 export default function CartPage() {
     
+    // For payment animation
+    const [verifyingPayment, setVerifyingPayment] = useState(false);
+    trefoil.register();
+
     // For loading animation
     const [isLoading, setIsLoading] = useState(true);
 
@@ -43,6 +48,7 @@ export default function CartPage() {
     const [amount, setAmount] = useState(0);
 
     const  [fetchingError,setFetchingError] = useState(false)
+
     
     // To handle errors in API calls
     const handleFetchingError = useCallback((message)=>{
@@ -128,7 +134,10 @@ export default function CartPage() {
             }
             
         } catch (error) {
-            console.log("Error: " + error);
+            if(error.response && error.response?.status === 401){
+                handleFetchingError('Session Expired');
+            }
+            alert(error?.response?.data?.message || "Couldn't update Count.");
         }
     }
 
@@ -157,6 +166,9 @@ export default function CartPage() {
             }
             
         } catch (error) {
+            if(error.response && error.response?.status === 401){
+                handleFetchingError('Session Expired');
+            }
             console.log("Error: " + error);
         }
     };
@@ -253,8 +265,23 @@ export default function CartPage() {
             </div>  
         </header>
 
-        { isLoading?
-           <LoadingAnimation/>
+        {verifyingPayment ?
+                <div className='customer-loading-animation'>
+                    <div>
+                    <l-trefoil
+                        size="50"
+                        stroke="3.5"
+                        speed="1.5" 
+                        color="rgb(39, 173, 101)" 
+                        ></l-trefoil>
+                        <h3>Verifying Payment...</h3>   
+                    </div>
+                </div>
+           :
+
+         isLoading?
+          
+            <LoadingAnimation/>
         :
         <AnimatePresence>
             {showCart &&
@@ -264,7 +291,6 @@ export default function CartPage() {
             transition={{type : 'tween', duration:0.8 , ease: 'easeInOut'}}
             exit={{x: 1000, opacity: 0}}
             className='cart-body'>
-
                 <div className='items-summary-div'>
                 <div className='cart-body-headding'>
                     <div 
@@ -284,19 +310,19 @@ export default function CartPage() {
                 </div>
 
                     <div className='cart-items-div'>
-                    <ul>
-                        {cart.map((item, index)=>{
-                            return <li
-                                key={item.productId} 
-                            >
-                            <CartItemCard item={item} updateCart = {updateCart} deleteCartItem={deleteCartItem} />
-                            </li>
-                        })}
-                    </ul>
+                        <ul>
+                            {cart.map((item, index)=>{
+                                return <li
+                                    key={item.productId} 
+                                >
+                                <CartItemCard item={item} updateCart = {updateCart} deleteCartItem={deleteCartItem} />
+                                </li>
+                            })}
+                        </ul>
                     </div>
                 </div>
                 {cart.length >0 &&
-                    <OrderSummary cart={ cart } setCart={setCart} amount={amount} user={user} fetchCartDetails={fetchCartDetails}/>
+                    <OrderSummary cart={ cart } setCart={setCart} amount={amount} user={user} fetchCartDetails={fetchCartDetails} setVerifyingPayment={setVerifyingPayment}/>
                 }
             </motion.div>
             }

@@ -3,7 +3,7 @@ import {motion} from 'framer-motion'
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-export default function OrderSummary({cart, setcart, amount, user, fetchCartDetails}) {
+export default function OrderSummary({cart, setcart, amount, user, fetchCartDetails, setVerifyingPayment}) {
     const navigate = useNavigate();
     const shipping = (amount*0.1).toFixed(2);
     const totalAmount = (parseFloat(amount) + parseFloat(shipping)).toFixed(2);
@@ -62,6 +62,10 @@ export default function OrderSummary({cart, setcart, amount, user, fetchCartDeta
           // This handler will handle the response from the razorpay client
           handler: async function (response) {
             try {
+              // starts the pament verification animation
+              setVerifyingPayment(true);
+              console.log("Animation started");
+              
               // Payment success, verify on backend
               const verifyResponse = await axios.post(
                 "http://localhost:9090/api/payment/verify",
@@ -100,8 +104,16 @@ export default function OrderSummary({cart, setcart, amount, user, fetchCartDeta
       const rzp = new window.Razorpay(options);
       rzp.open();
     } catch (error) {
+      if(error.response && error.response?.status === 401){
+        handleFetchingError('Session Expired');
+      }
       alert("Payment failed. Please try again.");
       console.error("Error during checkout:", error);
+    } finally{
+      
+        // stops the pament verification animation
+        setVerifyingPayment(false);
+        console.log("Animation started");
     }
   };
   

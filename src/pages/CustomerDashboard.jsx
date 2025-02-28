@@ -153,10 +153,12 @@ export default function CustomerDashboard() {
         await fetchCartCount();
       }
     } catch (error) {
+      console.log(error.response);
+      
       if(error?.status === 401)
         handleFetchingError("Authorization failed...")
       else
-        alert("Item Not added.try again")
+        alert("Item Not added: " + error?.response?.data?.message)
     }
   }, [user.username, fetchCartCount, handleFetchingError]);
 

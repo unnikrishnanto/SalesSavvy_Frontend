@@ -8,9 +8,8 @@ export default function ProductCard({product, addToCart}) {
     const [isAdding,setIsAdding] = useState(false); 
     const add = async (productId)=>{
         setIsAdding(true)
-        await addToCart(productId)        
+        const status =await addToCart(productId);
         setIsAdding(false)
-
     }
   return (
     <motion.div
@@ -34,13 +33,13 @@ export default function ProductCard({product, addToCart}) {
           <p className="product-price">Price ₹: {product.price}</p>
           <motion.button
             key={product.prodId}
-            disabled= {isAdding? true: false}
+            disabled= { product?.stock<=0 ||  isAdding ? true: false}
             className="add-to-cart-button"
             style={{opacity : isAdding? 0.7: 1}}
             whileHover={{ scale: [1, 1.05, 1] }} // Beating effect
             transition={{ duration: 0.6, ease: "easeInOut", repeat: 1 }} // Repeat only twice
             onClick= {()=> add(product.productId)}
-          > {isAdding? "Adding": "Add To Cart"
+          > {(product?.stock<=0)? "Out Of Stock":(isAdding? "Adding": "Add To Cart")
           }</motion.button>
         </motion.div>
   )

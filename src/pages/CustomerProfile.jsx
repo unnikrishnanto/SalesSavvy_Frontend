@@ -189,17 +189,20 @@ const handleSubmit = async (e)=>{
       }
 
     } catch (err) {
-      const error_message = err?.response?.data?.message || "Something went bad..Try again"
-      setError(prev=>({
-        visible: true,
-        message: error_message 
-      }));
+      if(error.response?.status === 401){
+        handleFetchingError("Session Expired ")
+      }else{
+        const error_message = err?.response?.data?.message || "Something went bad..Try again"
+        setError(prev=>({
+          visible: true,
+          message: error_message 
+        }));
 
-      setUpdating(false)
-      const form = document.getElementsByClassName("signup-form")[0];
-      form.style.border='1px solid rgba(234, 19, 19, 0.842)'; 
-      form.style.boxShadow='0 0 10px rgba(255, 0, 0, 0.8)';
-      return;
+        setUpdating(false)
+        const form = document.getElementsByClassName("signup-form")[0];
+        form.style.border='1px solid rgba(234, 19, 19, 0.842)'; 
+        form.style.boxShadow='0 0 10px rgba(255, 0, 0, 0.8)';
+      }
     }
   
 }
