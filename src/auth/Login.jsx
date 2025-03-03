@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from 'react'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
+import ParticlesBg from 'particles-bg';
 import '../assets/styles.css'
-import logo from "../assets/images/salessavvy_logo.png"
+import logo from "../assets/images/site_logo_dark.png"
 
 export default function () {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ export default function () {
           ...prev,
           [field]: true,
         }));
-        console.log(`Autofill detected in ${field}`);
+        // log(`Autofill detected in ${field}`);
       }
     };
 
@@ -165,8 +166,7 @@ export default function () {
         )
 
         if(response.status == 200){
-            console.log("Login Success");
-            console.log(response);
+            // console.log("Login Success");
             
             if(response?.data?.role === 'ADMIN'){
                 navigate("/adminHome");
@@ -181,7 +181,6 @@ export default function () {
         }
 
       } catch (err) {
-        console.log(err?.response?.data);
         
         const error_message =err.response?.data?.message|| "Something went bad..Try again"
         setError({
@@ -191,7 +190,7 @@ export default function () {
         // enables and updates status of login button
         setLogingIn(false)
 
-        const form = document.getElementsByClassName("signup-form")[0];
+        const form = document.getElementsByClassName("login-form")[0];
         form.style.border='1px solid rgba(234, 19, 19, 0.842)'; 
         form.style.boxShadow='0 0 10px rgba(255, 0, 0, 0.8)';
       }
@@ -214,13 +213,16 @@ export default function () {
 
   return (
 
-    <div className='login-div'>
+    <div className='auth-div' >
+      {/* This is for background animation */}
+      <ParticlesBg color="#063b7b" num={150} type="cobweb" bg={true} />
+      
       <div className='login-form-background'>
           <img className='logo' src={logo} alt="site-logo" />
           
           <h1>Login</h1>
 
-          <form onSubmit={handleSubmit} className='signup-form'>
+          <form onSubmit={handleSubmit} className='login-form'>
           <p
           style={{display: error.visible? "block": "none"}}
           className='login-error'

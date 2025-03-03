@@ -4,11 +4,6 @@
   box-sizing: border-box;
 }
 
-#root {
-  min-width: 1300px;
-  margin: 0px;
-  text-align: center;
-}
 
 .logo {
   will-change: filter;
@@ -19,6 +14,8 @@
 }
 
 body {
+  width: 100%;
+  height: 100dvh;
   margin: 0;
   padding: 0;
   display: block;

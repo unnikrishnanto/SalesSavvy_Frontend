@@ -37,7 +37,7 @@ export default function ReportByYear({setShowOptionsPopup, handleFetchingError})
             withCredentials: true
         }
     );
-     console.log(response);
+     (response);
      
      if(response.status === 200){
         setReport(response.data);
@@ -47,7 +47,7 @@ export default function ReportByYear({setShowOptionsPopup, handleFetchingError})
       if(error.response && error.response.status === 401){
         handleFetchingError(error.response?.data?.message || "Something went wrong.")
      } else {
-        console.log(error);
+        (error);
         alert(error.response?.data?.message || "Something went wrong.");
      }
     } finally{
@@ -88,7 +88,7 @@ export default function ReportByYear({setShowOptionsPopup, handleFetchingError})
                     onChange={(e)=> setYear( e.target.value)}
                     required/>
                   <motion.button
-                      whileHover={{scale: 1.05, color: 'rgba(81, 233, 10, 0.65)'}}
+                      whileHover={{scale: 1.05, backgroundColor: '#807f7f'}}
                       whileTap={{scale: 0.95}}
                   >GET BUSINESS REPORT</motion.button>                  
                 </motion.form>
@@ -129,7 +129,7 @@ function ReportView({report}){
             </div>
           
 
-        <table className='admin-table'>
+        <table className='admin-table report-table'>
             <tr>
                 <th>CATEGORY</th>
                 <th>ITEMS SOLD</th>

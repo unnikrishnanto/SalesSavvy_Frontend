@@ -29,15 +29,12 @@ export default function ViewAllProducts({setShowOptionsPopup, handleFetchingErro
                     withCredentials: true
                 }
             );
-            console.log(response);
             
             if(response.status === 200){
-                console.log(response?.data?.products);
                 setProducts(response?.data?.products)
             }
 
         } catch(err){
-            console.log("Error: ");
             handleFetchingError(err?.data?.message || "Something weent wrong. ")
         }
 
@@ -61,7 +58,7 @@ export default function ViewAllProducts({setShowOptionsPopup, handleFetchingErro
             <div className='admin-table-container'>
             {isLoading?
             
-            <div className='loading-animation-div'>
+            <div className='admin-loading-animation-div'>
                 <l-waveform
                 size="35"
                 stroke="3.5"

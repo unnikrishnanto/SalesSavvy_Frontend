@@ -3,7 +3,8 @@ import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import '../assets/styles.css'
-import logo from "../assets/images/salessavvy_logo.png"
+import logo from "../assets/images/site_logo_dark.png"
+import ParticlesBg from 'particles-bg';
 
 export default function () {
   const navigate = useNavigate();
@@ -155,123 +156,129 @@ export default function () {
   }
 
   return (
-    <div className='signup-div'>
-        <img className='logo' src={logo} alt="site-logo" />
-        
-        <h1>Register</h1>
 
-        <form onSubmit={handleSubmit} className='signup-form'>
-         <p
-         style={{display: error.visible? "block": "none"}}
-         className='error'
-         >{error.message}
-         </p>
+    <div className='auth-div'>
+      <ParticlesBg color="#063b7b" num={150} type="cobweb" bg={true} />
+      <div className='signup-div'>
+          <img className='logo' src={logo} alt="site-logo" />
+          
+          <h1>Register</h1>
 
-            <div
-            // This is a dummy div to prevent autocompletion of actual fields
-            className='autocomplete'>
-            <input
-              name='username'
-              type="text" />
-             <input
-              type="text" />
-             <input
-              type="password"/>
-              <div className='cover'></div>
-            </div>
-            
-            <label 
-            className='form-label username-label'
-            htmlFor="username"
-            style={{display: labelsVisible.username ? 'block': 'none'}}
-            >Username</label>
-            
-            <input 
-            className='form-input' 
-            type="text"
-            value={inputField.username}
-            pattern='^[a-zA-Z0-9]{5,50}$'
-            title="Username must 5-50 characters long and only alpabets and numbers " 
-            name='username' 
-            autoComplete='off'
-            placeholder={placeholders.username} 
-            onFocus={()=> handleInputFocus("username")}
-            onBlur={()=>handleInputBlur("username")}
-            onChange={(e)=> setInputField(prev=>({...prev, username:e.target.value}))}
-            required
-            />
-            
-            <label  className='form-label'
-            htmlFor="email"
-            style={{display: labelsVisible.email ? 'block': 'none'}}
-            >Email</label>
-            
-            <input 
-            className='form-input' 
-            type="email"  
-            value={inputField.email}
-            placeholder={placeholders.email} 
-            autoComplete='off'
-            onFocus={()=> handleInputFocus("email")}
-            onBlur={()=>handleInputBlur("email")}
-            onChange={(e)=> setInputField(prev=>({...prev, email:e.target.value}))}
-            required
-            />
+          <form onSubmit={handleSubmit} className='signup-form'>
+            <p
+            style={{display: error.visible? "block": "none"}}
+            className='error'
+            >{error.message}
+            </p>
+
+              <div
+              // This is a dummy div to prevent autocompletion of actual fields
+              className='autocomplete'>
+              <input
+                name='username'
+                type="text" />
+                <input
+                type="text" />
+                <input
+                type="password"/>
+                <div className='cover'></div>
+              </div>
+              
+              <label 
+              className='form-label username-label'
+              htmlFor="username"
+              style={{display: labelsVisible.username ? 'block': 'none'}}
+              >Username</label>
+              
+              <input 
+              className='form-input' 
+              type="text"
+              value={inputField.username}
+              pattern='^[a-zA-Z0-9]{5,50}$'
+              title="Username must 5-50 characters long and only alpabets and numbers " 
+              name='username' 
+              autoComplete='off'
+              placeholder={placeholders.username} 
+              onFocus={()=> handleInputFocus("username")}
+              onBlur={()=>handleInputBlur("username")}
+              onChange={(e)=> setInputField(prev=>({...prev, username:e.target.value}))}
+              required
+              />
+              
+              <label  className='form-label'
+              htmlFor="email"
+              style={{display: labelsVisible.email ? 'block': 'none'}}
+              >Email</label>
+              
+              <input 
+              className='form-input' 
+              type="email"  
+              value={inputField.email}
+              placeholder={placeholders.email} 
+              autoComplete='off'
+              onFocus={()=> handleInputFocus("email")}
+              onBlur={()=>handleInputBlur("email")}
+              onChange={(e)=> setInputField(prev=>({...prev, email:e.target.value}))}
+              required
+              />
 
 
-            <label  className='form-label'
-            htmlFor="password"
-            style={{display: labelsVisible.password ? 'block': 'none'}}
-            >Password</label>
-            
-            <input 
-            className='form-input' 
-            type="password"  
-            pattern='^[a-zA-Z0-9!@&%*._]{8,}$'
-            title='At least 8 characters with uppercase, lowercase, numbers and symbols ! @ & % * . _'
-            value={inputField.password}
-            placeholder={placeholders.password} 
-            onFocus={()=> handleInputFocus("password")}
-            onBlur={()=>handleInputBlur("password")}
-            onChange={(e)=> setInputField(prev=>({...prev, password:e.target.value}))}
-            required
-            />
+              <label  className='form-label'
+              htmlFor="password"
+              style={{display: labelsVisible.password ? 'block': 'none'}}
+              >Password</label>
+              
+              <input 
+              className='form-input' 
+              type="password"  
+              pattern='^[a-zA-Z0-9!@&%*._]{8,}$'
+              title='At least 8 characters with uppercase, lowercase, numbers and symbols ! @ & % * . _'
+              value={inputField.password}
+              placeholder={placeholders.password} 
+              onFocus={()=> handleInputFocus("password")}
+              onBlur={()=>handleInputBlur("password")}
+              onChange={(e)=> setInputField(prev=>({...prev, password:e.target.value}))}
+              required
+              />
 
-            <label 
-            htmlFor="role"
-            className='role-label'
-            >Role</label>
-            
-            <select 
-            name="role" 
-            value={inputField.role} 
-            onChange={(e)=>{setInputField((prev)=>({...prev, role: e.target.value}))}}
-            required
-            >
-              <option value="" disabled hidden >Choose a Role</option>
-              <option value="ADMIN">ADMIN</option>
-              <option value="CUSTOMER" >CUSTOMER</option>
-            </select>
-            
-            <br />
+              <label 
+              htmlFor="role"
+              className='role-label'
+              >Role</label>
+              
+              <select 
+              name="role" 
+              value={inputField.role} 
+              onChange={(e)=>{setInputField((prev)=>({...prev, role: e.target.value}))}}
+              required
+              >
+                <option value="" disabled hidden >Choose a Role</option>
+                <option value="ADMIN">Admin</option>
+                <option value="CUSTOMER" >Customer</option>
+              </select>
+              
+              <br />
 
-            <motion.button 
-            className='submit-button' 
-            type='submit'
-            whileHover={{scale: 1.05}}
-            whileTap={{scale: .95}}
-            disabled = {registering? true: false}
-            >
-              {registering? "Creating account...": "Create account" }
-            </motion.button>
-            
-        </form>
+              <motion.button 
+              className='submit-button' 
+              type='submit'
+              whileHover={{scale: 1.05}}
+              whileTap={{scale: .95}}
+              disabled = {registering? true: false}
+              >
+                {registering? "Creating account...": "Create account" }
+              </motion.button>
+              
+          </form>
 
-        <p className='navigation-link'>Already a User?  
-          <span
-            onClick={()=> navigate("/")} 
-          > Login here</span>
-         </p>
+          <p className='navigation-link'>Already a User?  
+            <span
+              onClick={()=> navigate("/")} 
+            > Login here</span>
+            </p>
+      </div>
     </div>
+
+
   )
 }

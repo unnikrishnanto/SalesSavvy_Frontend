@@ -30,15 +30,12 @@ export default function ViewAllUsers({setShowOptionsPopup, handleFetchingError})
                     withCredentials: true
                 }
             );
-            console.log(response);
             
             if(response.status === 200){
-                console.log(response?.data?.users);
                 setUsers(response?.data?.users)
             }
 
         } catch(err){
-            console.log("Error: ");
             handleFetchingError(err?.data?.message || "Something weent wrong. ")
         }
 
@@ -62,7 +59,7 @@ export default function ViewAllUsers({setShowOptionsPopup, handleFetchingError})
           className="view-all-users-div">
             <h3>All Users</h3>
             {isLoading ?
-            <div className='loading-animation-div'>
+            <div className='admin-loading-animation-div'>
                 <l-waveform
                 size="35"
                 stroke="3.5"

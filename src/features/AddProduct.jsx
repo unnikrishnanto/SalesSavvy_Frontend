@@ -76,7 +76,6 @@ export default function AddProduct({setShowOptionsPopup, handleFetchingError}) {
         if(error.response && error.response.status === 401){
             handleFetchingError(error.response?.data?.message || "Something went wrong.")
          } else {
-            console.log(error);
             alert(error.response?.data?.message);
          }
     } finally{
@@ -103,7 +102,7 @@ export default function AddProduct({setShowOptionsPopup, handleFetchingError}) {
             <h3>ADD A PRODUCT</h3>
             {isAdding ?
                 
-            <AdminLoadingAnimation message={"Fetching product details from database"}/>
+            <AdminLoadingAnimation message={"Adding product to database"}/>
             :
             <motion.form 
                 onSubmit={handleSubmit} 
@@ -193,7 +192,7 @@ export default function AddProduct({setShowOptionsPopup, handleFetchingError}) {
                     required/>
                 </div>
                     <motion.button
-                    whileHover={{scale: 1.05, color: 'rgba(16, 212, 19, 0.65)'}}
+                    whileHover={{scale: 1.05, backgroundColor: 'rgba(16, 212, 19, 0.65)'}}
                     whileTap={{scale: 0.95}}
                     >ADD PRODUCT</motion.button>
                     

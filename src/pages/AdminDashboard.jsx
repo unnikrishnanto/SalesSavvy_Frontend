@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useCallback, useEffect, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import logo from '../assets/images/salessavvy_logo.png'
+import logo from '../assets/images/site_logo_light.jpg'
 import ViewAllProducts from '../features/ViewAllProducts'
 import ViewAllUsers from '../features/ViewAllUsers'
 import AddProduct from '../features/AddProduct'
@@ -96,7 +96,7 @@ export default function AdminDashboard() {
     );
 
     if(response.status === 200){
-        console.log("Logout Successful");
+        // console.log("Logout Successful");
         navigate("/");
     }
     
@@ -106,7 +106,6 @@ export default function AdminDashboard() {
       }else{
         setLogoutOpacity(1);
         alert("Logout failed..");
-        console.log("Error: " + error);
       }
     }
     }, 1000)
@@ -141,7 +140,7 @@ export default function AdminDashboard() {
       <div className='admin-page-body'> 
 
         <motion.div className='admin-option-div'
-          initial={{x : -300 , opacity: 0}}
+          initial={{x : -250 , opacity: 0}}
           whileInView={{x : 0, opacity: 1}}
           transition={{type:'spring', duration: 2,}}
         >
@@ -156,7 +155,7 @@ export default function AdminDashboard() {
         </motion.div>
 
         <motion.div className='admin-option-div'
-          initial={{x : 300, opacity: 0}}
+          initial={{x : 250, opacity: 0}}
           whileInView={{x : 0, opacity: 1}}
           transition={{type:'spring', duration: 2,}}>
           <motion.button 
@@ -171,7 +170,7 @@ export default function AdminDashboard() {
 
 
         <motion.div className='admin-option-div'
-          initial={{x : -300 , opacity: 0}}
+          initial={{x : -250 , opacity: 0}}
           whileInView={{x : 0, opacity: 1}}
           transition={{type:'spring', duration: 2,}}>
           <motion.button 
@@ -186,7 +185,7 @@ export default function AdminDashboard() {
 
 
         <motion.div className='admin-option-div'
-          initial={{x : 300 , opacity: 0}}
+          initial={{x : 250 , opacity: 0}}
           whileInView={{x : 0, opacity: 1}}
           transition={{type:'spring', duration: 2,}}>
           <motion.button 
@@ -201,7 +200,7 @@ export default function AdminDashboard() {
 
 
         <motion.div className='admin-option-div'
-          initial={{x : -300 , opacity: 0}}
+          initial={{x : -250 , opacity: 0}}
           whileInView={{x : 0, opacity: 1}}
           transition={{type:'spring', duration: 2,}}>
           <motion.button 
@@ -216,7 +215,7 @@ export default function AdminDashboard() {
 
 
         <motion.div className='admin-option-div'
-          initial={{x : 300 , opacity: 0}}
+          initial={{x : 250 , opacity: 0}}
           whileInView={{x : 0, opacity : 1}}
           transition={{type:'spring', duration: 2,}}>
           <motion.button 
@@ -231,7 +230,7 @@ export default function AdminDashboard() {
 
 
         <motion.div className='admin-option-div'
-          initial={{x : -300 , opacity: 0}}
+          initial={{x : -250 , opacity: 0}}
           whileInView={{x : 0, opacity: 1}}
           transition={{type:'spring', duration: 2,}}>
           <motion.button 
@@ -246,7 +245,7 @@ export default function AdminDashboard() {
 
 
         <motion.div className='admin-option-div'
-          initial={{x : 300 }}
+          initial={{x : 250 }}
           whileInView={{x : 0}}
           transition={{type:'spring', duration: 2,}}>
           <motion.button 
@@ -261,7 +260,7 @@ export default function AdminDashboard() {
 
 
         <motion.div className='admin-option-div'
-          initial={{x :-300 }}
+          initial={{x :-250 }}
           whileInView={{x : 0}}
           transition={{type:'spring', duration: 2,}}>
           <motion.button 
@@ -276,7 +275,7 @@ export default function AdminDashboard() {
 
 
         <motion.div className='admin-option-div'
-          initial={{x : 300 }}
+          initial={{x : 250 }}
           whileInView={{x : 0}}
           transition={{type:'spring', duration: 2,}}>
           <motion.button 

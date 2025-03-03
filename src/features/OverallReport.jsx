@@ -27,7 +27,6 @@ export default function OverallReport({setShowOptionsPopup, handleFetchingError}
             withCredentials: true
         }
     );
-     console.log(response);
      if(response.status === 200){
         setReport(response.data);
      }
@@ -36,7 +35,6 @@ export default function OverallReport({setShowOptionsPopup, handleFetchingError}
       if(error.response && error.response.status === 401){
         handleFetchingError(error.response?.data?.message || "Something went wrong.")
      } else {
-        console.log(error);
         alert(error.response?.data?.message || "Something went wrong.");
      }
     }
@@ -76,7 +74,7 @@ export default function OverallReport({setShowOptionsPopup, handleFetchingError}
                     </div>
                 
 
-                    <table className='admin-table'>
+                    <table className='admin-table report-table'>
                         <tr>
                             <th>CATEGORY</th>
                             <th>ITEMS SOLD</th>

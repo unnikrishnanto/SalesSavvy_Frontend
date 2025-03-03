@@ -43,7 +43,6 @@ export default function ManageProduct({setShowOptionsPopup, handleFetchingError}
        headers:{"Content-Type" : 'application/json'},
        withCredentials: true
      });
-      console.log(response);
       
       if(response.status === 200){
          alert("Product Deleted Successfuly");
@@ -53,7 +52,6 @@ export default function ManageProduct({setShowOptionsPopup, handleFetchingError}
        if(error.response && error.response.status === 401){
          handleFetchingError(error.response?.data?.message || "Something went wrong.")
       } else {
-         console.log(error);
          alert(error.response?.data?.message);
       }
      } finally {
@@ -74,7 +72,6 @@ export default function ManageProduct({setShowOptionsPopup, handleFetchingError}
             withCredentials: true
         }
     );
-     console.log(response);
      
      if(response.status === 200){
         setProduct(response.data.product);
@@ -84,7 +81,6 @@ export default function ManageProduct({setShowOptionsPopup, handleFetchingError}
       if(error.response && error.response.status === 404 || error.response.status === 400  ){
         alert(error.response?.data?.message);
      } else {
-        console.log(error);
         handleFetchingError(error.response?.data?.message || "Something went wrong.")
      }
     } finally {
@@ -110,7 +106,6 @@ export default function ManageProduct({setShowOptionsPopup, handleFetchingError}
         setIsUpdating(false);
         return;
     }
-console.log(trimmedProduct);
 
     // Updating product
     try {
@@ -131,7 +126,6 @@ console.log(trimmedProduct);
         if(error.response && error.response.status === 401){
             handleFetchingError(error.response?.data?.message || "Something went wrong.")
          } else {
-            console.log(error);
             alert(error.response?.data?.message);
          }
     } finally{
@@ -272,13 +266,13 @@ console.log(trimmedProduct);
 
                         <motion.button
                           type='submit'
-                          whileHover={{scale: 1.05, color: 'rgba(16, 212, 19, 0.65)'}}
+                          whileHover={{scale: 1.05, backgroundColor: '#10d413'}}
                           whileTap={{scale: 0.95}}
                           >UPDATE PRODUCT</motion.button>
 
                         <motion.button
                           onClick={deleteProduct}
-                          whileHover={{scale: 1.05, color: 'rgba(171, 38, 8, 0.65)'}}
+                          whileHover={{scale: 1.05, backgroundColor: '#c30909'}}
                           whileTap={{scale: 0.95}}
                           >DELETE PRODUCT</motion.button>
 
@@ -287,7 +281,7 @@ console.log(trimmedProduct);
                  :
                   <motion.form 
                     onSubmit={fetchProductDetails} 
-                    className='delete-product-form' 
+                    className='manage-product-form' 
                     initial={{scale: 0, opacity: 0}}
                     animate={{scale: 1, opacity: 1}}
                     transition={{type:"spring", duration:1.2}}
@@ -303,7 +297,7 @@ console.log(trimmedProduct);
 
                     
                       <motion.button
-                        whileHover={{scale: 1.05, color: 'rgba(73, 166, 7, 0.96)'}}
+                        whileHover={{scale: 1.05, backgroundColor: '#807f7f'}}
                         whileTap={{scale: 0.95}}
                       >FETCH PRODUCT DETAILS</motion.button>
                   </motion.form>

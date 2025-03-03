@@ -1,8 +1,8 @@
 import  { React, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import logo from "../assets/images/salessavvy_logo.png"
-import cartIcon from "../assets/images/cart_icon.png"
+import logo from "../assets/images/site_logo_light.jpg"
+import cartIcon from "../assets/images/cart_icon.svg"
 import profileIcon from "../assets/images/profile_icon.png"
 import NavBar from './NavBar'
 import axios from 'axios'
@@ -42,7 +42,7 @@ export default function CustomerDashboardHeader({user,changeCategory, cartCount}
         );
 
         if(response.status === 200){
-          console.log("Logout Successful");
+          // console.log("Logout Successful");
           navigate("/");
         }
         
@@ -51,7 +51,6 @@ export default function CustomerDashboardHeader({user,changeCategory, cartCount}
           navigate("/")
         }else{
           alert("Logout failed..");
-          console.log("Error: " + error);
         }
       }
   }
@@ -72,7 +71,8 @@ export default function CustomerDashboardHeader({user,changeCategory, cartCount}
           onClick={()=>navigate("/cart")}
           whileHover={{scale:1.1}}
           >
-          <img src={cartIcon} alt="" className='logo' />
+            
+          <img src={cartIcon} alt=''/>
           <p className='cart-count-div' >{cartCount || 0}</p>
         </motion.div>
       <div className="profile-dropdown"
@@ -90,7 +90,7 @@ export default function CustomerDashboardHeader({user,changeCategory, cartCount}
         {
         <motion.div
          className="options-div"
-         animate={{top: isOpen? 105: -110}}
+         animate={{top: isOpen? 105: -150}}
          transition={{type:"spring"}}
          >
           <ul>

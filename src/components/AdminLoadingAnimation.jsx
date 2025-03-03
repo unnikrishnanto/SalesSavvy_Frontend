@@ -6,7 +6,7 @@ export default function AdminLoadingAnimation({message}) {
   // Registring animation  
   hatch.register();  
   return (
-    <div className='loading-animation-div'>
+    <div className='admin-loading-animation-div'>
         <l-hatch
         size="35"
         stroke="3.5"

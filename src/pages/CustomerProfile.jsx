@@ -2,7 +2,7 @@ import {React, useCallback, useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
-import leftArrow from "../assets/images/left_arrow.png"
+import leftArrow from "../assets/images/left_arrow.svg"
 import LoadingAnimation from '../components/CustomerLoadingAnimation'
 import CustomerProfileHeader from "../components/CustomerProfileHeader";
 import ChangePasswordComponent from "../auth/ChangePasswordComponent";
@@ -44,7 +44,6 @@ const [inputFields,setInputFields] = useState({
     role:""
 }) 
 
-const [cartCount, setCartCount] = useState(0);
 
 const  [fetchingError,setFetchingError] = useState(false)
 
@@ -59,28 +58,6 @@ const handleFetchingError = useCallback((message)=>{
     return prev;
     })
 }, [navigate])
-
-// To fetch cart count associated with a user (token based)
-const fetchCartCount =useCallback(async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:9090/api/cart/count",
-        {
-        headers:{
-          "Content-Type" : "application/json"
-        },
-        withCredentials : true // to add cookies in request
-      });
-
-      if(response.status === 200){
-        setCartCount(response.data?.count || 0);
-      }
-      
-    } catch (error) {
-      handleFetchingError("Couldn't load user details.")
-    }
-
-  }, [handleFetchingError]);
 
 
 
@@ -97,7 +74,6 @@ const fetchUserDetails= useCallback(
         });
     
         if(response.status === 200){
-          console.log(response.data.user);
           setUser(response.data?.user);
           setInputFields(response.data?.user);
         }
@@ -109,18 +85,13 @@ const fetchUserDetails= useCallback(
 
   useEffect(()=>{
     const fetchData = async () => {
-      try {
-        // Promise all will make parallel API calls
-        await Promise.all([fetchUserDetails(), fetchCartCount()]);
-        setIsLoading(false)
-      } catch (error) {
-        console.error("Error in initial data fetching:", error);
-      }
+      await fetchUserDetails();
+      setIsLoading(false)
     };
 
     fetchData();
 
-  },[fetchUserDetails, fetchCartCount])
+  },[fetchUserDetails])
 
 const[error, setError] = useState({
   visible: false,
@@ -211,7 +182,7 @@ const handleSubmit = async (e)=>{
 
   return (
      <div className='profile-main-div'>
-     <CustomerProfileHeader user={user} cartCount={cartCount} ></CustomerProfileHeader>
+     <CustomerProfileHeader user={user}></CustomerProfileHeader>
      {
         isLoading ? 
             <LoadingAnimation/>
@@ -234,8 +205,11 @@ const handleSubmit = async (e)=>{
                             }, 600);  // Wait for exit animation to complete
                     }}
                     >
-                        <img src={leftArrow} alt="<-" />
-                        <p>Click here to go back to home</p>
+                        <motion.img 
+                          whileHover={{scale: 1.2, boxShadow: '1px 1px 5px rgba(214, 214, 214, 0.7)'}}
+                          whileTap={{ scale: 0.8 }}
+                          transition={{type:'tween', duration:0.2, ease: 'easeInOut'}}
+                          src={leftArrow} alt="<-" />
                     </div>
                     <h2>Profile</h2>
                 </div>
@@ -330,7 +304,7 @@ const handleSubmit = async (e)=>{
                             whileTap={{scale: .95}}
                             initial={{y: -105}}
                             animate={{y : 0}}
-                            exit={{y: -109, opacity: 0.9, scale: 0.95}}
+                            exit={{y: -90, opacity: 0.9, scale: 0.95}}
                             transition={{type:'tween', duration: 0.5, ease: 'easeInOut' }}
                             >
                           Change Password

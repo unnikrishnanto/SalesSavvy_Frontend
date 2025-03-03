@@ -1,8 +1,8 @@
 import  { React, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import logo from "../assets/images/salessavvy_logo.png"
-import cartIcon from "../assets/images/cart_icon.png"
+import logo from "../assets/images/site_logo_light.jpg"
+import cartIcon from "../assets/images/cart_icon.svg"
 import profileIcon from "../assets/images/profile_icon.png"
 import NavBar from './NavBar'
 import axios from 'axios'
@@ -43,7 +43,7 @@ export default function CustomerProfileHeader({user, cartCount}) {
         );
 
         if(response.status === 200){
-          console.log("Logout Successful");
+          // console.log("Logout Successful");
           navigate("/");
         }
         
@@ -52,32 +52,31 @@ export default function CustomerProfileHeader({user, cartCount}) {
           navigate("/")
         }else{
           alert("Logout failed..");
-          console.log("Error: " + error);
         }
       }
   }
   
   return (
     <header className='profile-page-header'>
-      <div className='logo-div'>
+      <div className='logo-div l-d-2'>
       <img className='header-logo' src={logo} alt="site logo" />
       <h2>SalesSavvy</h2>
       </div>
 
       <div className='nav-tail'>
         <motion.div 
-          className='header-cart-info'
+          className='header-cart-info profile-cart-info'
           onClick={()=>navigate("/cart")}
           whileHover={{scale:1.1}}
           >
-          <img src={cartIcon} alt="" className='logo' />
+          <img src={cartIcon} alt="" />
           <p className='cart-count-div' >{cartCount || 0}</p>
         </motion.div>
       <div className="profile-dropdown"
         ref={dropdownRef}
         onClick ={()=> setIsOpen(prev=> !prev)}
         >
-        <div className="profile-icon-div">
+        <div className="profile-icon-div p-i-div-2">
             <img
              className="profile-icon" 
              src={profileIcon} 
@@ -88,7 +87,7 @@ export default function CustomerProfileHeader({user, cartCount}) {
         {
         <motion.div
          className="options-div"
-         animate={{top: isOpen? 105: -110}}
+         animate={{top: isOpen? 105: -150}}
          transition={{type:"spring"}}
          >
           <ul>

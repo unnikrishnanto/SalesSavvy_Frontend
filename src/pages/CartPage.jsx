@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import logo from "../assets/images/salessavvy_logo.png"
+import logo from "../assets/images/site_logo_light.jpg"
 import profileIcon from "../assets/images/profile_icon.png"
-import leftArrow from "../assets/images/left_arrow.png"
+import leftArrow from "../assets/images/left_arrow.svg"
 import axios from 'axios'
 import CartItemCard from '../components/CartItemCard'
 import OrderSummary from '../components/OrderSummary'
@@ -75,14 +75,12 @@ export default function CartPage() {
     );
 
     if(response.status === 200){
-        console.log(response.data);
         setUser(response.data.user);
         setCart(response.data.products);
         // This return the count of products in the cart for verification during order palacement
         return response.data.products;
     }
     } catch (error) {
-    console.log(error);
     handleFetchingError("Couldn't load cart items")
     }
     }, [handleFetchingError]);
@@ -169,7 +167,6 @@ export default function CartPage() {
             if(error.response && error.response?.status === 401){
                 handleFetchingError('Session Expired');
             }
-            console.log("Error: " + error);
         }
     };
 
@@ -188,7 +185,7 @@ export default function CartPage() {
           );
   
           if(response.status === 200){
-            console.log("Logout Successful");
+            // console.log("Logout Successful");
             navigate("/");
           }
           
@@ -197,7 +194,6 @@ export default function CartPage() {
                 navigate("/")
             }else{
                 alert("Logout failed..");
-                console.log("Error: " + error);
             }
         }
     }
@@ -205,7 +201,7 @@ export default function CartPage() {
     return (
         <div className='cart-main-div'>
         <header className='cart-page-header'>
-            <div className='logo-div'>
+            <div className='logo-div l-d-2'>
             <img className='header-logo' src={logo} alt="site logo" />
             <h2>SalesSavvy</h2>
             </div>
@@ -215,7 +211,7 @@ export default function CartPage() {
               ref={dropdownRef}
               onClick ={()=> setIsOpen(prev=> !prev)}
             >
-                <div className="profile-icon-div">
+                <div className="profile-icon-div p-i-div-2">
                     <img
                     className="profile-icon" 
                     src={profileIcon} 
@@ -226,7 +222,7 @@ export default function CartPage() {
                 {
                     <motion.div
                         className="options-div"
-                        animate={{top: isOpen? 105: -110}}
+                        animate={{top: isOpen? 105: -150}}
                         transition={{type:"spring"}}
                         >
                         <ul>
@@ -302,8 +298,11 @@ export default function CartPage() {
                         }, 600);  // Wait for exit animation to complete
                     }}
                     >
-                        <img src={leftArrow} alt="<-" />
-                        <p>Click here to go back to home</p>
+                    <motion.img 
+                        whileHover={{scale: 1.2, boxShadow: '1px 1px 5px rgba(214, 214, 214, 0.7)'}}
+                        whileTap={{ scale: 0.8 }}
+                        transition={{type:'tween', duration:0.2, ease: 'easeInOut'}}
+                        src={leftArrow} alt="<-" />
                     </div>
                     <h2>Shopping Cart</h2>
                     <p>You hava {cart.length} products in your cart</p>

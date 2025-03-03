@@ -20,7 +20,6 @@ export default function ReportByDate({setShowOptionsPopup, handleFetchingError})
   const handleSubmit = async(e) =>{
     e.preventDefault();
     setIsFetching(true)
-     console.log(date);
     // Fetching User Data from DB
     try {
      const response = await axios.get(
@@ -31,7 +30,6 @@ export default function ReportByDate({setShowOptionsPopup, handleFetchingError})
             withCredentials: true
         }
     );
-     console.log(response);
      
      if(response.status === 200){
         setReport(response.data);
@@ -41,7 +39,6 @@ export default function ReportByDate({setShowOptionsPopup, handleFetchingError})
       if(error.response && error.response.status === 401){
         handleFetchingError(error.response?.data?.message || "Something went wrong.")
      } else {
-        console.log(error);
         alert(error.response?.data?.message);
      }
     } finally{
@@ -79,7 +76,7 @@ export default function ReportByDate({setShowOptionsPopup, handleFetchingError})
                 required/>
 
                 <motion.button
-                    whileHover={{scale: 1.05, color: 'rgba(110, 233, 10, 0.65)'}}
+                    whileHover={{scale: 1.05, backgroundColor: '#807f7f'}}
                     whileTap={{scale: 0.95}}
                 >GET BUSINESS REPORT</motion.button>                  
               </motion.form>
@@ -120,7 +117,7 @@ function ReportView({report}){
             </div>
           
 
-        <table className='admin-table'>
+        <table className='admin-table report-table'>
             <tr>
                 <th>CATEGORY</th>
                 <th>ITEMS SOLD</th>

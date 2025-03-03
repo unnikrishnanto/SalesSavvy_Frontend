@@ -2,9 +2,9 @@ import {React, useCallback, useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
-import logo from "../assets/images/salessavvy_logo.png"
+import logo from "../assets/images/site_logo_light.jpg"
 import profileIcon from "../assets/images/profile_icon.png"
-import leftArrow from "../assets/images/left_arrow.png"
+import leftArrow from "../assets/images/left_arrow.svg"
 import defaultImage from '../assets/images/default_image.png'
 
 import LoadingAnimation from '../components/CustomerLoadingAnimation'
@@ -68,13 +68,11 @@ const response = await axios.get(
 );
 
 if(response.status === 200){
-    console.log(response.data);
     setUser(response.data?.user)
     let sortedOrder = response.data?.orders.sort((a, b)=> new Date(b.time) - new Date(a.time)); 
     setOrders(sortedOrder);
 }
 } catch (error) {
-console.log(error);
 handleFetchingError("Couldn't load Order items")
 }
 }, [handleFetchingError]);
@@ -105,7 +103,6 @@ const logout = async ()=>{
     );
 
     if(response.status === 200){
-        console.log("Logout Successful");
         navigate("/");
     }
     
@@ -114,7 +111,6 @@ const logout = async ()=>{
             navigate("/")
         }else{
             alert("Logout failed..");
-            console.log("Error: " + error);
         }
     }
 }
@@ -122,7 +118,7 @@ const logout = async ()=>{
   return (
      <div className='orders-main-div'>
      <header className="orders-page-header">
-         <div className='logo-div'>
+         <div className='logo-div l-d-2'>
          <img className='header-logo' src={logo} alt="site logo" />
          <h2>SalesSavvy</h2>
          </div>
@@ -132,7 +128,7 @@ const logout = async ()=>{
            ref={dropdownRef}
            onClick ={()=> setIsOpen(prev=> !prev)}
          >
-             <div className="profile-icon-div">
+             <div className="profile-icon-div p-i-div-2">
                  <img
                  className="profile-icon" 
                  src={profileIcon} 
@@ -143,7 +139,7 @@ const logout = async ()=>{
              {
                  <motion.div
                      className="options-div"
-                     animate={{top: isOpen? 105: -110}}
+                     animate={{top: isOpen? 105: -150}}
                      transition={{type:"spring"}}
                      >
                      <ul>
@@ -203,22 +199,30 @@ const logout = async ()=>{
                             }, 600);  // Wait for exit animation to complete
                     }}
                     >
-                        <img src={leftArrow} alt="<-" />
-                        <p>Click here to go back to home</p>
+                     <motion.img 
+                        whileHover={{scale: 1.2, boxShadow: '1px 1px 5px rgba(214, 214, 214, 0.7)'}}
+                        whileTap={{ scale: 0.8 }}
+                        transition={{type:'tween', duration:0.2, ease: 'easeInOut'}}
+                        src={leftArrow} alt="<-" />
                     </div>
                     <h2>Your Orders</h2>
                 </div>
                 <div className="order-list-div">
-                    {orders.map((item)=>{
+                    {
+                        (orders.length == 0) ?
+                            <h4 className="empty-order-msg">No orders yet! Start shopping and place your first order.</h4>    
+                        :
+                        orders.map((item, index)=>{
                         return <div
                                     className="order-item-card"
-                                    key={item.productId}
+                                    key={index}
                                     >
                                 <div className="order-item-heading">
                                     <p>Order ID: {item.orderId}</p>
                                 </div>
                                 <div className="order-item-body">
-                                    <img
+                                    <motion.img
+                                        whileHover={{scale: 1.1}} 
                                         src={item.imgUrl || defaultImage} 
                                         alt="Image Not Found" 
                                         onError={e=>{

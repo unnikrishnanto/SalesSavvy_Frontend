@@ -58,7 +58,6 @@ export default function ChangePasswordComponent({setShowChangePass}) {
                 }
 
             } catch(err){
-                console.log(err);
                 
                 const err_msg = err?.response?.data?.message || "Password Chanaging Failed"
                 setError(prev=>({

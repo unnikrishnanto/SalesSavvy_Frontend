@@ -49,8 +49,7 @@ export default function ModifyUserDetails({setShowOptionsPopup, handleFetchingEr
             withCredentials: true
         }
     );
-     console.log(response);
-     
+
      if(response.status === 200){
         setUser(response.data.user);
      }
@@ -59,7 +58,6 @@ export default function ModifyUserDetails({setShowOptionsPopup, handleFetchingEr
       if(error.response && error.response.status === 404){
         alert(error.response?.data?.message);
      } else {
-        console.log(error);
         handleFetchingError(error.response?.data?.message || "Something went wrong.")
      }
     } finally{
@@ -98,7 +96,7 @@ export default function ModifyUserDetails({setShowOptionsPopup, handleFetchingEr
                 required/>
 
                 <motion.button
-                    whileHover={{scale: 1.05, color: 'rgba(233, 70, 10, 0.65)'}}
+                    whileHover={{scale: 1.05, backgroundColor: '#807f7f'}}
                     whileTap={{scale: 0.95}}
                 >GET USER DETAILS</motion.button>                 
             </motion.form>
@@ -159,7 +157,7 @@ function UserView({user, setUser, handleFetchingError}){
 
     return( 
     isUpdating?
-        <div className='loading-animation-div'>
+        <div className='admin-loading-animation-div'>
         <l-hourglass
         size="45"
         stroke="3.5"
@@ -235,7 +233,7 @@ function UserView({user, setUser, handleFetchingError}){
         </div>       
 
         <motion.button
-        whileHover={{scale: 1.05, color: 'rgba(16, 212, 19, 0.65)'}}
+        whileHover={{scale: 1.05, backgroundColor: 'rgba(8, 163, 11, 0.65)'}}
         whileTap={{scale: 0.95}}
         >UPDATE USER</motion.button>
     </motion.form>

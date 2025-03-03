@@ -1,11 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import axios from 'axios';
-import { hatch } from 'ldrs'
+import AdminLoadingAnimation from '../components/AdminLoadingAnimation';
   
 export default function ViewUserDetails({setShowOptionsPopup, handleFetchingError}) {
-  // Registering loading animation
-  hatch.register()
 
   const [isFetching, setIsFetching] = useState(false); 
   
@@ -51,7 +49,6 @@ export default function ViewUserDetails({setShowOptionsPopup, handleFetchingErro
             withCredentials: true
         }
     );
-     console.log(response);
      
      if(response.status === 200){
         setUser(response.data.user);
@@ -61,7 +58,6 @@ export default function ViewUserDetails({setShowOptionsPopup, handleFetchingErro
       if(error.response && error.response.status === 404){
         alert(error.response?.data?.message);
      } else {
-        console.log(error);
         handleFetchingError(error.response?.data?.message || "Something went wrong.")
      }
     } finally{
@@ -82,15 +78,7 @@ export default function ViewUserDetails({setShowOptionsPopup, handleFetchingErro
           <h3>USER DETAILS</h3>
           {!user ?
             isFetching ?
-              <div className='loading-animation-div'>
-                <l-hatch
-                size="35"
-                stroke="3.5"
-                speed="1.5" 
-                color="rgb(39, 173, 101)" 
-                ></l-hatch>
-                <h3>Fetching User details..</h3>    
-              </div>
+              <AdminLoadingAnimation message='Fetching User details..' />
             :
             <motion.form 
               onSubmit={handleSubmit} 
@@ -109,7 +97,7 @@ export default function ViewUserDetails({setShowOptionsPopup, handleFetchingErro
                 required/>
 
                   <motion.button
-                    whileHover={{scale: 1.05, color: 'rgba(233, 70, 10, 0.65)'}}
+                    whileHover={{scale: 1.05, backgroundColor: '#807f7f'}}
                     whileTap={{scale: 0.95}}
                   >GET USER DETAILS</motion.button>    
           </motion.form>

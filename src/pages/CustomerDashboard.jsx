@@ -153,7 +153,6 @@ export default function CustomerDashboard() {
         await fetchCartCount();
       }
     } catch (error) {
-      console.log(error.response);
       
       if(error?.status === 401)
         handleFetchingError("Authorization failed...")

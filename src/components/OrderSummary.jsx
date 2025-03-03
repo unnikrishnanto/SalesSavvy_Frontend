@@ -64,7 +64,6 @@ export default function OrderSummary({cart, setcart, amount, user, fetchCartDeta
             try {
               // starts the pament verification animation
               setVerifyingPayment(true);
-              console.log("Animation started");
               
               // Payment success, verify on backend
               const verifyResponse = await axios.post(
@@ -113,7 +112,6 @@ export default function OrderSummary({cart, setcart, amount, user, fetchCartDeta
       
         // stops the pament verification animation
         setVerifyingPayment(false);
-        console.log("Animation started");
     }
   };
   

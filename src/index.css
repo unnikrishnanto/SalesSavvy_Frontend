@@ -4,12 +4,16 @@
  
   color-scheme: light dark;
   color:#242424;
-  background-color:rgb(237, 244, 194);
+  background-color:#d7d5e6;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  
 }
 
+#root{
+  padding: 0px;
+  margin: 0px;
+}

@@ -14,13 +14,14 @@ export default function ProductCard({product, addToCart}) {
   return (
     <motion.div
      className='product-card'
-     initial={{x: 200, opacity: 0}}
+     initial={{x: 200, opacity: 2}}
      animate={{x : 0, opacity: 1}}
      exit={{ x: -200, opacity: 0 }} // Exit animation
-     transition={{type: "spring", duration: 0.8}}
-     whileHover={{scale : 1.02}}
+     transition={{type: "spring", duration: 0.6}}
+     whileHover={{scale : 1.05}}
      >
-          <img 
+          <motion.img
+            whileHover={{scale: 1.1}} 
             className="product-image" 
             src={product.imageUrl || defaultImage} 
             alt="Image Not Found"   
