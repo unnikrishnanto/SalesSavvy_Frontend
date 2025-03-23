@@ -25,7 +25,7 @@ export default function ReportByMonth({setShowOptionsPopup, handleFetchingError}
     // Fetching User Data from DB
     try {
      const response = await axios.get(
-        `http://localhost:9090/admin/business/monthly`, // URL
+        `https://salessavvy.onrender.com/admin/business/monthly`, // URL
         {
             params: { month, year }, // Use 'params' for query parameters
             headers: { "Content-Type": "application/json" },

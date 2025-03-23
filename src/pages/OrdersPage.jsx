@@ -58,7 +58,7 @@ const handleFetchingError = useCallback((message)=>{
 const fetchOrderDetails = useCallback(async () =>{
 try {
 const response = await axios.get(
-    "http://localhost:9090/api/orders",
+    "https://salessavvy.onrender.com/api/orders",
     {
         headers: {
             "Content-Type": "application/json"
@@ -92,7 +92,7 @@ const logout = async ()=>{
     try {
         // sending a post request to logout endpoint to delete token 
         const response = await axios.post(
-        "http://localhost:9090/api/logout",
+        "https://salessavvy.onrender.com/api/logout",
         {},
         {
             headers:{

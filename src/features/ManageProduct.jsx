@@ -38,7 +38,7 @@ export default function ManageProduct({setShowOptionsPopup, handleFetchingError}
     try {
       const response = await axios({
        method : 'DELETE',  
-       url: 'http://localhost:9090/admin/products/delete',
+       url: 'https://salessavvy.onrender.com/admin/products/delete',
        data:{productId : product?.productId},
        headers:{"Content-Type" : 'application/json'},
        withCredentials: true
@@ -65,7 +65,7 @@ export default function ManageProduct({setShowOptionsPopup, handleFetchingError}
     setIsFetching(true);
     try{
       const response = await axios.get(
-        `http://localhost:9090/admin/products/details`, // URL
+        `https://salessavvy.onrender.com/admin/products/details`, // URL
         {
             params: { productId }, // Use 'params' for query parameters
             headers: { "Content-Type": "application/json" },
@@ -110,7 +110,7 @@ export default function ManageProduct({setShowOptionsPopup, handleFetchingError}
     // Updating product
     try {
      const response = await axios.post(
-        'http://localhost:9090/admin/products/update',
+        'https://salessavvy.onrender.com/admin/products/update',
         {...trimmedProduct},
         {
             headers:{"Content-Type" : 'application/json'},

@@ -32,7 +32,7 @@ export default function CustomerProfileHeader({user, cartCount}) {
       try {
           // sending a post request to logout endpoint to delete token 
           const response = await axios.post(
-            "http://localhost:9090/api/logout",
+            "https://salessavvy.onrender.com/api/logout",
             {},
             {
               headers:{

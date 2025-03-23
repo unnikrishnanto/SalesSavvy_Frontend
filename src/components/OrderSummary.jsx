@@ -34,7 +34,7 @@ export default function OrderSummary({cart, setcart, amount, user, fetchCartDeta
 
         // Create Razorpay order via backend
         const response = await axios.post(
-          "http://localhost:9090/api/payment/create",
+          "https://salessavvy.onrender.com/api/payment/create",
           requsetBody,{
           headers:{
             "Content-Type" : "application/json"
@@ -67,7 +67,7 @@ export default function OrderSummary({cart, setcart, amount, user, fetchCartDeta
               
               // Payment success, verify on backend
               const verifyResponse = await axios.post(
-                "http://localhost:9090/api/payment/verify",
+                "https://salessavvy.onrender.com/api/payment/verify",
                 {
                   razorpayOrderId: response.razorpay_order_id, // Ensure key matches backend
                   razorpayPaymentId: response.razorpay_payment_id, // Ensure key matches backend

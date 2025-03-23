@@ -41,7 +41,7 @@ export default function ChangePasswordComponent({setShowChangePass}) {
             try{
 
                 const response = await axios.post(
-                    "http://localhost:9090/api/user/changePassword",
+                    "https://salessavvy.onrender.com/api/user/changePassword",
                     {
                         oldPassword,
                         newPassword

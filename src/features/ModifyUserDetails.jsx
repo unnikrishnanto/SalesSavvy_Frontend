@@ -42,7 +42,7 @@ export default function ModifyUserDetails({setShowOptionsPopup, handleFetchingEr
     // Fetching User Data from DB
     try {
      const response = await axios.get(
-        `http://localhost:9090/admin/users/details`, // URL
+        `https://salessavvy.onrender.com/admin/users/details`, // URL
         {
             params: { userId }, // Use 'params' for query parameters
             headers: { "Content-Type": "application/json" },
@@ -131,7 +131,7 @@ function UserView({user, setUser, handleFetchingError}){
 
         try{
             const response = await axios.post(
-                "http://localhost:9090/admin/users/modify",
+                "https://salessavvy.onrender.com/admin/users/modify",
                 { ...userFields },
                 {
                     headers:{ "Content-Type":"application/json"},

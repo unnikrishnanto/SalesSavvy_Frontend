@@ -65,7 +65,7 @@ const fetchUserDetails= useCallback(
     async () => {
       try {
         const response = await axios({
-          url:"http://localhost:9090/api/user/details", 
+          url:"https://salessavvy.onrender.com/api/user/details", 
           method: "GET",
           headers :{
             "Content-Type" : "application/json"
@@ -135,7 +135,7 @@ const handleSubmit = async (e)=>{
      setUpdating(true)
        
      const response = await axios.post(
-        "http://localhost:9090/api/user/updateDetails",
+        "https://salessavvy.onrender.com/api/user/updateDetails",
         { username, email },
         {
             headers:{ "Content-Type":"application/json"},

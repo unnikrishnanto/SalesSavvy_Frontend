@@ -23,7 +23,7 @@ export default function ViewAllProducts({setShowOptionsPopup, handleFetchingErro
     async()=>{
         try{
             const response = await axios.get(
-                'http://localhost:9090/admin/products/all',
+                'https://salessavvy.onrender.com/admin/products/all',
                 {
                     headers:{"Content-Type":'application/json'},
                     withCredentials: true

@@ -46,7 +46,7 @@ export default function CustomerDashboard() {
   const fetchCartCount =useCallback(async () => {
       try {
         const response = await axios.get(
-          "http://localhost:9090/api/cart/count",
+          "https://salessavvy.onrender.com/api/cart/count",
           {
           headers:{
             "Content-Type" : "application/json"
@@ -70,7 +70,7 @@ export default function CustomerDashboard() {
     async () => {
       try {
         const response = await axios({
-          url:"http://localhost:9090/api/user/details", 
+          url:"https://salessavvy.onrender.com/api/user/details", 
           method: "GET",
           headers :{
             "Content-Type" : "application/json"
@@ -92,7 +92,7 @@ export default function CustomerDashboard() {
   const fetchProducts = useCallback( async ( category ) => {
     try{ 
       const response = await axios.get(
-        `http://localhost:9090/api/products?category=${category || "shirts"}`,
+        `https://salessavvy.onrender.com/api/products?category=${category || "shirts"}`,
         {
           headers: {
             "Content-Type": "application/json"
@@ -137,7 +137,7 @@ export default function CustomerDashboard() {
   const addToCart = useCallback(async (productId)=>{
     try {
       const response = await axios.post(
-        "http://localhost:9090/api/cart/add",
+        "https://salessavvy.onrender.com/api/cart/add",
         {
           username: user.username,
           productId: productId

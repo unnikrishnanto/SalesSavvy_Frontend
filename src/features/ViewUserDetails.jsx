@@ -42,7 +42,7 @@ export default function ViewUserDetails({setShowOptionsPopup, handleFetchingErro
     // Fetching User Data from DB
     try {
      const response = await axios.get(
-        `http://localhost:9090/admin/users/details`, // URL
+        `https://salessavvy.onrender.com/admin/users/details`, // URL
         {
             params: { userId }, // Use 'params' for query parameters
             headers: { "Content-Type": "application/json" },

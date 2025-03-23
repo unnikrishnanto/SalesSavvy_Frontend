@@ -108,7 +108,7 @@ export default function () {
        setRegistering(true)
          
        const response = await axios.post(
-          "http://localhost:9090/api/user/register",
+          "https://salessavvy.onrender.com/api/user/register",
           { username, password, email, role },
           {headers:{
             "Content-Type":"application/json"

@@ -21,7 +21,7 @@ export default function OverallReport({setShowOptionsPopup, handleFetchingError}
     // Fetching  Data from DB
     try {
      const response = await axios.get(
-        `http://localhost:9090/admin/business/overall`, // URL
+        `https://salessavvy.onrender.com/admin/business/overall`, // URL
         {
             headers: { "Content-Type": "application/json" },
             withCredentials: true

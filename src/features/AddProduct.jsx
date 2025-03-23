@@ -59,7 +59,7 @@ export default function AddProduct({setShowOptionsPopup, handleFetchingError}) {
     // Adding product to DB
     try {
      const response = await axios.post(
-        'http://localhost:9090/admin/products/add',
+        'https://salessavvy.onrender.com/admin/products/add',
         {...trimmedProduct},
         {
             headers:{"Content-Type" : 'application/json'},

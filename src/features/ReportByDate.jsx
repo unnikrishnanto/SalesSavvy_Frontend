@@ -23,7 +23,7 @@ export default function ReportByDate({setShowOptionsPopup, handleFetchingError})
     // Fetching User Data from DB
     try {
      const response = await axios.get(
-        `http://localhost:9090/admin/business/daily`, // URL
+        `https://salessavvy.onrender.com/admin/business/daily`, // URL
         {
             params: { date }, // Use 'params' for query parameters
             headers: { "Content-Type": "application/json" },

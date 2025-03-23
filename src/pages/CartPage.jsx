@@ -65,7 +65,7 @@ export default function CartPage() {
     const fetchCartDetails = useCallback(async () =>{
     try {
     const response = await axios.get(
-        "http://localhost:9090/api/cart/getItems",
+        "https://salessavvy.onrender.com/api/cart/getItems",
         {
             headers: {
                 "Content-Type": "application/json"
@@ -105,7 +105,7 @@ export default function CartPage() {
         try {
 
             const response = await axios.put(
-                'http://localhost:9090/api/cart/update',
+                'https://salessavvy.onrender.com/api/cart/update',
                 {
                     username: user.username,
                     productId: prod,
@@ -143,7 +143,7 @@ export default function CartPage() {
         try {
             const response = await axios({
 
-                url:'http://localhost:9090/api/cart/remove',
+                url:'https://salessavvy.onrender.com/api/cart/remove',
                 method: "DELETE",
                 data: {
                     username: user.username,
@@ -174,7 +174,7 @@ export default function CartPage() {
         try {
             // sending a post request to logout endpoint to delete token 
             const response = await axios.post(
-              "http://localhost:9090/api/logout",
+              "https://salessavvy.onrender.com/api/logout",
               {},
               {
                 headers:{

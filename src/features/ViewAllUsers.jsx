@@ -24,7 +24,7 @@ export default function ViewAllUsers({setShowOptionsPopup, handleFetchingError})
     async()=>{
         try{
             const response = await axios.get(
-                'http://localhost:9090/admin/users/all',
+                'https://salessavvy.onrender.com/admin/users/all',
                 {
                     headers:{"Content-Type":'application/json'},
                     withCredentials: true
