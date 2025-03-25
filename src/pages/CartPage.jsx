@@ -1,8 +1,8 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import logo from "../assets/images/site_logo_light.jpg"
-import profileIcon from "../assets/images/profile_icon.png"
+import logo from "../assets/images/site_logo_light.svg"
+import profileIcon from "../assets/images/profile_icon.svg"
 import leftArrow from "../assets/images/left_arrow.svg"
 import axios from 'axios'
 import CartItemCard from '../components/CartItemCard'

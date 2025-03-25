@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import ParticlesBg from 'particles-bg';
 import '../assets/styles.css'
-import logo from "../assets/images/site_logo_dark.png"
+import logo from "../assets/images/site_logo_dark.svg"
 
 export default function () {
   const navigate = useNavigate();

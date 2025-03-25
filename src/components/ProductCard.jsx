@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion';
-import defaultImage from '../assets/images/default_image.png'
+import defaultImage from '../assets/images/default_image.svg'
 
 
 export default function ProductCard({product, addToCart}) {

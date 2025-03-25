@@ -2,10 +2,10 @@ import {React, useCallback, useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
-import logo from "../assets/images/site_logo_light.jpg"
-import profileIcon from "../assets/images/profile_icon.png"
+import logo from "../assets/images/site_logo_light.svg"
+import profileIcon from "../assets/images/profile_icon.svg"
 import leftArrow from "../assets/images/left_arrow.svg"
-import defaultImage from '../assets/images/default_image.png'
+import defaultImage from '../assets/images/default_image.svg'
 
 import LoadingAnimation from '../components/CustomerLoadingAnimation'
 

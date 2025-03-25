@@ -1,9 +1,9 @@
 import  { React, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import logo from "../assets/images/site_logo_light.jpg"
+import logo from "../assets/images/site_logo_light.svg"
 import cartIcon from "../assets/images/cart_icon.svg"
-import profileIcon from "../assets/images/profile_icon.png"
+import profileIcon from "../assets/images/profile_icon.svg"
 import NavBar from './NavBar'
 import axios from 'axios'
 

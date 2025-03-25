@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import deleteIcon from "../assets/images/delete_icon.svg"
-import defaultImage from '../assets/images/default_image.png'
+import defaultImage from '../assets/images/default_image.svg'
 
 export default function CartItemCard({item, updateCart, deleteCartItem}) { 
  

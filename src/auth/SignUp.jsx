@@ -3,7 +3,7 @@ import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import '../assets/styles.css'
-import logo from "../assets/images/site_logo_dark.png"
+import logo from "../assets/images/site_logo_dark.svg"
 import ParticlesBg from 'particles-bg';
 
 export default function () {
