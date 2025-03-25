@@ -21,7 +21,7 @@ input:-webkit-autofill {
 
 .login-form-background{
     background-color: #dce2e6;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -52,7 +52,7 @@ input:-webkit-autofill {
 
 .signup-div{
     background-color: #dce2e6;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -104,8 +104,8 @@ input:-webkit-autofill {
     margin-bottom: 5px;
     padding-left: 10px;
     border: none;
-    border-radius: 10px;
-    border-bottom:2px rgb(111, 111, 111) solid ;
+    border-radius: 5px;
+    border-bottom:2px rgba(111, 111, 111, 0.685) solid ;
     color: #242424;
     background-color: #ffffffd7;
     transition: border 1s;
@@ -144,7 +144,7 @@ form option {
     width: 90%;
     height: 30px;
     border: none;
-    border-radius: 15px;
+    border-radius: 5px;
     color: #dce2e6;
     font-weight: 500;
     background-color: #242424;
@@ -1609,6 +1609,30 @@ background: #f0f0f0;
 
 @media (max-width: 576px) {
 
+    .login-form,
+    .signup-form{
+        margin: 0px;
+    }
+
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+    .signup-div h1,
+    .login-form-background h1 {
+        font-size: 25px;
+    }
+
+    .form-input{
+        width: 200px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    form select {
+        font-size: 12px;
+    }
+
     .product-div {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -1661,7 +1685,7 @@ background: #f0f0f0;
     .add-product-form textarea,
     .update-product-form textarea{
         font-size: 12px;
-        height: 30px;
+        height: 25px;
     }
 
     .add-product-form button,
@@ -1701,6 +1725,24 @@ background: #f0f0f0;
 
 
 @media (max-width: 380px) {
+
+    .signup-div,
+    .login-form-background {
+        margin: 0px;
+    }
+    .signup-div h1,
+    .login-form-background h1 {
+        font-size: 20px;
+    }
+
+    .form-input{
+        width: 150px;
+    }
+
+    .navigation-link {
+        margin: 0px;
+        font-size: 12px;
+    }
     .product-div {
         grid-template-columns: repeat(1, 1fr);
     }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion';
-
 import defaultImage from '../assets/images/default_image.png'
+
 
 export default function ProductCard({product, addToCart}) {
     // Tacks if an addition is in progress
