@@ -9,16 +9,20 @@ import CartItemCard from '../components/CartItemCard'
 import OrderSummary from '../components/OrderSummary'
 import LoadingAnimation from '../components/CustomerLoadingAnimation'
 import { trefoil } from 'ldrs'
+import LogoutAnimation from '../components/LogoutAnimation'
 
 export default function CartPage() {
     
     // For payment animation
     const [verifyingPayment, setVerifyingPayment] = useState(false);
+    const [initiatingPayment, setInitiatingPayment] = useState(false);
     trefoil.register();
 
     // For loading animation
     const [isLoading, setIsLoading] = useState(true);
 
+    // For logout animation
+    const [isLogingOut, setIsLogingOut] = useState(false);
 
     // to execute dropdown animation
     const [isOpen, setIsOpen] =  useState(false)
@@ -172,6 +176,7 @@ export default function CartPage() {
 
     const logout = async ()=>{
         try {
+            setIsLogingOut(true);
             // sending a post request to logout endpoint to delete token 
             const response = await axios.post(
               "https://salessavvy.onrender.com/api/logout",
@@ -190,146 +195,153 @@ export default function CartPage() {
           }
           
         } catch (error) {  
-            if(error.response?.status === 401){
-                navigate("/")
-            }else{
-                alert("Logout failed..");
-            }
+           navigate("/");
         }
     }
 
     return (
-        <div className='cart-main-div'>
-        <header className='cart-page-header'>
-            <div className='logo-div l-d-2'>
-            <img className='header-logo' src={logo} alt="site logo" />
-            <h2>SalesSavvy</h2>
-            </div>
-
-            <div className='nav-tail'>
-            <div className="profile-dropdown"
-              ref={dropdownRef}
-              onClick ={()=> setIsOpen(prev=> !prev)}
-            >
-                <div className="profile-icon-div p-i-div-2">
-                    <img
-                    className="profile-icon" 
-                    src={profileIcon} 
-                    alt="profile" 
-                    />
-                    <p>{user?.username || "GuestAccount"}</p>
-                </div>
-                {
-                    <motion.div
-                        className="options-div"
-                        animate={{top: isOpen? 105: -150}}
-                        transition={{type:"spring"}}
-                        >
-                        <ul>
-                        <motion.li
-                        whileHover={{scale:1.06}}
-                        whileTap={{ x: -50, backgroundColor: "rgb(12, 241, 230)"}}
-                        onClick={()=> navigate("/profile")}
-                        >Profile</motion.li>
-            
-                        <motion.li
-                            whileHover={{scale:1.06}}
-                            whileTap={{ x: -50, backgroundColor: "rgb(12, 241, 230)"}}
-                            onClick={()=> {
-                                setShowCart(false)
-                                setTimeout(() => {
-                                  navigate("/customerHome");
-                                }, 600);  // Wait for exit animation to complete
-                            }}
-                        >Home</motion.li>
-            
-                        <motion.li
-                        whileHover={{scale:1.06}}
-                        whileTap={{ x: -50, backgroundColor: "rgb(12, 241, 230)"}}
-                        onClick={()=> navigate("/orders")}
-                        >Orders</motion.li>
-                        <motion.li
-                        whileHover={{scale:1.06}}
-                        whileTap={{ x: -50 , backgroundColor: "rgb(241, 12, 12)"}}
-                        onClick={logout}
-                        >Logout</motion.li>
-                        </ul>
-                    </motion.div>
-                        
-                }
-                </div>
-            </div>  
-        </header>
-
-        {verifyingPayment ?
-                <div className='customer-loading-animation'>
-                    <div>
-                    <l-trefoil
-                        size="50"
-                        stroke="3.5"
-                        speed="1.5" 
-                        color="rgb(39, 173, 101)" 
-                        ></l-trefoil>
-                        <h3>Verifying Payment...</h3>   
-                    </div>
-                </div>
-           :
-
-         isLoading?
+        <>
+        { isLogingOut
+                  ?
+                    <LogoutAnimation/>
+                  :
+                  <div className='cart-main-div'>
+                  <header className='cart-page-header'>
+                      <div className='logo-div l-d-2'>
+                      <img className='header-logo' src={logo} alt="site logo" />
+                      <h2>SalesSavvy</h2>
+                      </div>
           
-            <LoadingAnimation/>
-        :
-        <AnimatePresence>
-            {showCart &&
-            <motion.div
-            initial={{x : 1000}}
-            animate={{x : 0}}
-            transition={{type : 'tween', duration:0.8 , ease: 'easeInOut'}}
-            exit={{x: 1000, opacity: 0}}
-            className='cart-body'>
-                <div className='items-summary-div'>
-                <div className='cart-body-headding'>
-                    <div 
-                    className="home-nav" 
-                    onClick={()=> {
-                        setShowCart(false)
-                        setTimeout(() => {
-                            navigate("/customerHome");
-                        }, 600);  // Wait for exit animation to complete
-                    }}
-                    >
-                    <motion.img 
-                        whileHover={{scale: 1.2, boxShadow: '1px 1px 5px rgba(214, 214, 214, 0.7)'}}
-                        whileTap={{ scale: 0.8 }}
-                        transition={{type:'tween', duration:0.2, ease: 'easeInOut'}}
-                        src={leftArrow} alt="<-" />
-                    </div>
-                    <h2>Shopping Cart</h2>
-                    <p>You hava {cart.length} products in your cart</p>
-                </div>
-
-                    <div className='cart-items-div'>
-                        <ul>
-                            {cart.map((item, index)=>{
-                                return <li
-                                    key={item.productId} 
-                                >
-                                <CartItemCard item={item} updateCart = {updateCart} deleteCartItem={deleteCartItem} />
-                                </li>
-                            })}
-                        </ul>
-                    </div>
-                </div>
-                {cart.length >0 &&
-                    <OrderSummary cart={ cart } setCart={setCart} amount={amount} user={user} fetchCartDetails={fetchCartDetails} setVerifyingPayment={setVerifyingPayment}/>
-                }
-            </motion.div>
-            }
-        </AnimatePresence>
+                      <div className='nav-tail'>
+                      <div className="profile-dropdown"
+                        ref={dropdownRef}
+                        onClick ={()=> setIsOpen(prev=> !prev)}
+                      >
+                          <div className="profile-icon-div p-i-div-2">
+                              <img
+                              className="profile-icon" 
+                              src={profileIcon} 
+                              alt="profile" 
+                              />
+                              <p>{user?.username || "GuestAccount"}</p>
+                          </div>
+                          {
+                              <motion.div
+                                  className="options-div"
+                                  animate={{top: isOpen? 105: -150}}
+                                  transition={{type:"spring"}}
+                                  >
+                                  <ul>
+                                  <motion.li
+                                  whileHover={{scale:1.06}}
+                                  whileTap={{ x: -50, backgroundColor: "rgb(12, 241, 230)"}}
+                                  onClick={()=> navigate("/profile")}
+                                  >Profile</motion.li>
+                      
+                                  <motion.li
+                                      whileHover={{scale:1.06}}
+                                      whileTap={{ x: -50, backgroundColor: "rgb(12, 241, 230)"}}
+                                      onClick={()=> {
+                                          setShowCart(false)
+                                          setTimeout(() => {
+                                            navigate("/customerHome");
+                                          }, 600);  // Wait for exit animation to complete
+                                      }}
+                                  >Home</motion.li>
+                      
+                                  <motion.li
+                                  whileHover={{scale:1.06}}
+                                  whileTap={{ x: -50, backgroundColor: "rgb(12, 241, 230)"}}
+                                  onClick={()=> navigate("/orders")}
+                                  >Orders</motion.li>
+                                  <motion.li
+                                  whileHover={{scale:1.06}}
+                                  whileTap={{ x: -50 , backgroundColor: "rgb(241, 12, 12)"}}
+                                  onClick={logout}
+                                  >Logout</motion.li>
+                                  </ul>
+                              </motion.div>
+                                  
+                          }
+                          </div>
+                      </div>  
+                  </header>
+          
+                  {( initiatingPayment || verifyingPayment) ?
+                          <div className='customer-loading-animation'>
+                              <div>
+                              <l-trefoil
+                                  size="50"
+                                  stroke="3.5"
+                                  speed="1.5" 
+                                  color="rgb(39, 173, 101)" 
+                                  ></l-trefoil>
+                                  <h3>{verifyingPayment ? 'Verifying Payment...' : 'Initiating Payment...' }</h3>   
+                              </div>
+                          </div>
+                     :
+          
+                   isLoading?
+                    
+                      <LoadingAnimation message={'Loading Cart Items'}/>
+                  :
+                  <AnimatePresence>
+                      {showCart &&
+                      <motion.div
+                      initial={{x : 1000}}
+                      animate={{x : 0}}
+                      transition={{type : 'tween', duration:0.8 , ease: 'easeInOut'}}
+                      exit={{x: 1000, opacity: 0}}
+                      className='cart-body'>
+                          <div className='items-summary-div'>
+                          <div className='cart-body-headding'>
+                              <div 
+                              className="home-nav" 
+                              onClick={()=> {
+                                  setShowCart(false)
+                                  setTimeout(() => {
+                                      navigate("/customerHome");
+                                  }, 600);  // Wait for exit animation to complete
+                              }}
+                              >
+                              <motion.img 
+                                  whileHover={{scale: 1.2, boxShadow: '1px 1px 5px rgba(214, 214, 214, 0.7)'}}
+                                  whileTap={{ scale: 0.8 }}
+                                  transition={{type:'tween', duration:0.2, ease: 'easeInOut'}}
+                                  src={leftArrow} alt="<-" />
+                              </div>
+                              <h2>Shopping Cart</h2>
+                              <p>You hava {cart.length} products in your cart</p>
+                          </div>
+          
+                              <div className='cart-items-div'>
+                                  <ul>
+                                      {cart.map((item, index)=>{
+                                          return <li
+                                              key={item.productId} 
+                                          >
+                                          <CartItemCard item={item} updateCart = {updateCart} deleteCartItem={deleteCartItem} />
+                                          </li>
+                                      })}
+                                  </ul>
+                              </div>
+                          </div>
+                          {cart.length >0 &&
+                              <OrderSummary cart={ cart } setCart={setCart} amount={amount} user={user} fetchCartDetails={fetchCartDetails} setVerifyingPayment={setVerifyingPayment} setInitiatingPayment={setInitiatingPayment} />
+                          }
+                      </motion.div>
+                      }
+                  </AnimatePresence>
+          
+                  }
+          
+               
+                  </div>        
 
         }
+        
+        </>
 
-     
-        </div>
+
     )
     }

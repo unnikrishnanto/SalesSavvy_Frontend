@@ -7,7 +7,7 @@ import profileIcon from "../assets/images/profile_icon.svg"
 import NavBar from './NavBar'
 import axios from 'axios'
 
-export default function CustomerDashboardHeader({user,changeCategory, cartCount}) {
+export default function CustomerDashboardHeader({user,changeCategory, cartCount, setIsLogingOut}) {
   
   const navigate  = useNavigate();
   // for refering dropdown menu for closing effect
@@ -29,6 +29,7 @@ export default function CustomerDashboardHeader({user,changeCategory, cartCount}
 
   const logout = async ()=>{
       try {
+          setIsLogingOut(true);
           // sending a post request to logout endpoint to delete token 
           const response = await axios.post(
             "https://salessavvy.onrender.com/api/logout",
@@ -47,11 +48,7 @@ export default function CustomerDashboardHeader({user,changeCategory, cartCount}
         }
         
       } catch (error) {
-        if(error.response?.status === 401){
           navigate("/")
-        }else{
-          alert("Logout failed..");
-        }
       }
   }
   

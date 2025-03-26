@@ -2,7 +2,7 @@ import { metronome } from 'ldrs'
 import React from 'react'
 
 
-export default function CustomerLoadingAnimation() {
+export default function CustomerLoadingAnimation({message}) {
   metronome.register();
   return (
     <div className='customer-loading-animation'>
@@ -13,7 +13,7 @@ export default function CustomerLoadingAnimation() {
         speed="1.5" 
         color="rgb(39, 173, 101)" 
         ></l-metronome>
-        <h3>Loading...</h3>   
+        <h3>{message}...</h3>   
       </div>
     </div>
   )

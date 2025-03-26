@@ -4,13 +4,17 @@ import { useNavigate } from "react-router-dom"
 import {motion, AnimatePresence} from "framer-motion"
 import CustomerDashboardHeader from "../components/CustomerDashboardHeader"
 import ProductCard from "../components/ProductCard"
-import LoadingAnimation from '../components/CustomerLoadingAnimation'
+import LogoutAnimation from "../components/LogoutAnimation"
 
 
 export default function CustomerDashboard() {
 
   // For loading animation
   const [isLoading, setIsLoading] = useState(true);
+
+  // For logout animation
+  const [isLogingOut, setIsLogingOut] = useState(false);
+
 
   // for route navigation
   const navigate = useNavigate();
@@ -27,6 +31,9 @@ export default function CustomerDashboard() {
 
   // Storing products in the selected category
   const [products, setProducts] = useState([]);
+
+  // Empty Array for creating Skeletons for loading animation 
+  const loadingDivs = new Array(12).fill(null);
 
   // To inform and navigate in acse of error
   // also prevents mutiple alerts and navigations in call of mutiple failiures.
@@ -125,10 +132,12 @@ export default function CustomerDashboard() {
 
   },[fetchProducts, fetchUser, fetchCartCount])
 
-  const changeCategory = (newCategory)=>{
+  const changeCategory = async (newCategory) => {
     setProducts([]); // Clear the product list to trigger exit animation
-    setTimeout(() => {
-      fetchProducts(newCategory); // Fetch new products 
+    setTimeout(async () => {
+      setIsLoading(true)
+      await fetchProducts(newCategory); // Fetch new products 
+      setIsLoading(false)
     }, 300); // 300ms delay for exit animation 
   }
 
@@ -164,12 +173,26 @@ export default function CustomerDashboard() {
 
   return (
     <>		
-      <CustomerDashboardHeader {...{ user, changeCategory, cartCount }} />
-      
-      {isLoading ?
-       <LoadingAnimation/>
-      : 
+      { isLogingOut
+          ?
+            <LogoutAnimation/>
+          :
+      <>
+      <CustomerDashboardHeader {...{ user, changeCategory, cartCount, setIsLogingOut }} />
       < motion.div className="product-div">
+      {isLoading ?
+       
+        loadingDivs.map((_, index)=>{
+          
+        return   <div className="product-card " key={index}>
+        <div className="product-image skeleton-loader" />
+        <h3 className="skeleton-loader"></h3>
+        <div className="product-price skeleton-loader"></div>
+        <button className="add-to-cart-button skeleton-loader">ADD TO CART</button>
+      </div>
+        })
+      : 
+      
           <AnimatePresence>
           {
             products.map((p, i)=>{
@@ -177,11 +200,10 @@ export default function CustomerDashboard() {
             })
           }
           </AnimatePresence>
-        </motion.div>
       }
-
-    
-
+      </motion.div>
+      </>
+}
     </>
   )
 }

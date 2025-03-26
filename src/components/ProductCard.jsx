@@ -14,8 +14,6 @@ export default function ProductCard({product, addToCart}) {
   return (
     <motion.div
      className='product-card'
-     initial={{x: 200, opacity: 2}}
-     animate={{x : 0, opacity: 1}}
      exit={{ x: -200, opacity: 0 }} // Exit animation
      transition={{type: "spring", duration: 0.6}}
      whileHover={{scale : 1.05}}

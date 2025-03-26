@@ -3,7 +3,7 @@ import {motion} from 'framer-motion'
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-export default function OrderSummary({cart, setcart, amount, user, fetchCartDetails, setVerifyingPayment}) {
+export default function OrderSummary({cart, setcart, amount, user, fetchCartDetails, setVerifyingPayment, setInitiatingPayment}) {
     const navigate = useNavigate();
     const shipping = (amount*0.1).toFixed(2);
     const totalAmount = (parseFloat(amount) + parseFloat(shipping)).toFixed(2);
@@ -12,6 +12,7 @@ export default function OrderSummary({cart, setcart, amount, user, fetchCartDeta
     // Razorpay integration for payment
     const handlePlaceOrder = async () =>{
       try {
+        setInitiatingPayment(true);
         // This is for making sure that the products in the cart are available before making payment
         const currentCount = cart.length;
         const updatedcart = await fetchCartDetails(); // Ensure fresh data
@@ -19,8 +20,11 @@ export default function OrderSummary({cart, setcart, amount, user, fetchCartDeta
         if (!updatedcart || updatedcart.length !== currentCount) { 
             alert("Some Items in your cart are no longer available.");
             setcart(updatedcart);
+            setInitiatingPayment(false);
             return;
         }
+
+       
 
         // Payload for creating the Order
         const requsetBody = {
@@ -62,7 +66,9 @@ export default function OrderSummary({cart, setcart, amount, user, fetchCartDeta
           // This handler will handle the response from the razorpay client
           handler: async function (response) {
             try {
-              // starts the pament verification animation
+              // stops the payment initiation animation
+              setInitiatingPayment(false);
+              // starts the payment verification animation
               setVerifyingPayment(true);
               
               // Payment success, verify on backend
@@ -109,7 +115,8 @@ export default function OrderSummary({cart, setcart, amount, user, fetchCartDeta
       alert("Payment failed. Please try again.");
       console.error("Error during checkout:", error);
     } finally{
-      
+        // stops the payment initiation animation
+        setInitiatingPayment(false);
         // stops the pament verification animation
         setVerifyingPayment(false);
     }

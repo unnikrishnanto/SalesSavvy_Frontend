@@ -6,12 +6,15 @@ import leftArrow from "../assets/images/left_arrow.svg"
 import LoadingAnimation from '../components/CustomerLoadingAnimation'
 import CustomerProfileHeader from "../components/CustomerProfileHeader";
 import ChangePasswordComponent from "../auth/ChangePasswordComponent";
+import LogoutAnimation from "../components/LogoutAnimation";
 
 export default function CustomerProfile() {
 
 // For loading animation
 const [isLoading, setIsLoading] = useState(true);
 
+// For logout animation
+const [isLogingOut, setIsLogingOut] = useState(false);
 
 // to execute dropdown animation
 const [isOpen, setIsOpen] =  useState(false)
@@ -181,11 +184,16 @@ const handleSubmit = async (e)=>{
 
 
   return (
+<>
+    { isLogingOut
+      ?
+        <LogoutAnimation/>
+      :
      <div className='profile-main-div'>
-     <CustomerProfileHeader user={user}></CustomerProfileHeader>
+     <CustomerProfileHeader user={user} setIsLoading={setIsLoading}></CustomerProfileHeader>
      {
         isLoading ? 
-            <LoadingAnimation/>
+            <LoadingAnimation message={"Loading User Details"}/>
         :
         <AnimatePresence>
          {showProfile &&
@@ -327,6 +335,9 @@ const handleSubmit = async (e)=>{
      }
 
     </div>
+
+    }
+</>
  )
  }
 
