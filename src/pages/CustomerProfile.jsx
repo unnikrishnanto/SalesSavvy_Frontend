@@ -312,7 +312,7 @@ const handleSubmit = async (e)=>{
                             whileTap={{scale: .95}}
                             initial={{y: -105}}
                             animate={{y : 0}}
-                            exit={{y: -90, opacity: 0.9, scale: 0.95}}
+                            exit={{y: -95, opacity: 0.9, scale: 0.95}}
                             transition={{type:'tween', duration: 0.5, ease: 'easeInOut' }}
                             >
                           Change Password

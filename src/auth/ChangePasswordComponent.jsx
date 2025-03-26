@@ -3,7 +3,9 @@ import { motion } from 'framer-motion'
 import axios from 'axios'
 export default function ChangePasswordComponent({setShowChangePass}) {
 
-    const [changingPass, setChangingPass] = useState(false)
+    const [changingPass, setChangingPass] = useState(false);
+
+    const [hideButton, setHideButton] = useState(false);
 
     const [inputFields, setInputFields] = useState({
         oldPassword: '',
@@ -53,7 +55,8 @@ export default function ChangePasswordComponent({setShowChangePass}) {
                 );
 
                 if(response.status === 200){
-                    alert("Password changed Successfully.")
+                    alert("Password changed Successfully.");
+                    setHideButton(true);
                     setShowChangePass(false)
                 }
 
@@ -80,14 +83,18 @@ export default function ChangePasswordComponent({setShowChangePass}) {
   return (
     <motion.div 
       className="password-change-div"
-      initial={{scale: 0.4, opacity: 0.4}}
+      initial={{scale: 0.4, opacity: 0}}
       animate={{scale: 1, opacity: 1}}
       exit={{scale: 0.4, opacity: 0}}
       transition={{type: 'spring', duration: 1}}
     >
         <motion.button 
          className='close-change-pass-button'
-         onTap={()=> setShowChangePass(false)}
+         onTap={()=>{ 
+            setHideButton(true);
+            setShowChangePass(false)
+        }
+        }
          whileHover={{scale: 1.2, backgroundColor: 'rgb(215, 12, 12)'}}
          whileTap={{scale: 0.9}} 
         >X</motion.button>
@@ -158,18 +165,22 @@ export default function ChangePasswordComponent({setShowChangePass}) {
              onChange={(e)=> setInputFields(prev=>({...prev, newPasswordRepeat:e.target.value}))}
             required          
         />
-         <motion.button 
+        {
+            !hideButton &&
+            <motion.button 
             className='change-password-button'
             autoComplete='off' 
             whileHover={{scale: 1.05}}
             whileTap={{scale: .95}}
             initial={{opacity: 0}}
-            animate={{opacity: 1}}
+            animate={{opacity: [0, 0, 1]}}
             disabled = {changingPass? true: false}
-            transition={{type:'tween', duration: 0.5 }}
+            transition={{type:'tween', duration: 1.5 }}
             >
             {changingPass? "Changing Password...": "Change Password" }
         </motion.button>
+        }
+         
     </form>
 </motion.div>
   )
