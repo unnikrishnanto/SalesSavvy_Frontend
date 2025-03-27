@@ -32,6 +32,15 @@ export default function CustomerDashboard() {
   // Storing products in the selected category
   const [products, setProducts] = useState([]);
 
+  //
+  const [AllProducts, setAllProducts] = useState({
+    'shirts': null,
+    'pants': null,
+    'mobiles': null, 
+    'multimedia': null, 
+    'accessories': null
+  })
+
   // Empty Array for creating Skeletons for loading animation 
   const loadingDivs = new Array(12).fill(null);
 
@@ -109,6 +118,11 @@ export default function CustomerDashboard() {
       );
       if(response.status === 200){
         setProducts(response?.data?.products || [])
+        setAllProducts(state=>({
+          ...state,
+          [category]:  response?.data?.products
+        }));
+       
       } 
     }catch(error){
      handleFetchingError("Couldn't load product details.")
@@ -134,11 +148,15 @@ export default function CustomerDashboard() {
 
   const changeCategory = async (newCategory) => {
     setProducts([]); // Clear the product list to trigger exit animation
-    setTimeout(async () => {
-      setIsLoading(true)
-      await fetchProducts(newCategory); // Fetch new products 
-      setIsLoading(false)
-    }, 300); // 300ms delay for exit animation 
+      setTimeout(async () => {
+        setIsLoading(true)
+        if(AllProducts[newCategory] != null){ 
+          setProducts(AllProducts[newCategory]);  
+        } else {
+          await fetchProducts(newCategory); // Fetch new products
+        } 
+        setIsLoading(false)
+      }, 300); // 300ms delay for exit animation 
   }
 
 

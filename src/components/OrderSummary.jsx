@@ -3,7 +3,7 @@ import {motion} from 'framer-motion'
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-export default function OrderSummary({cart, setcart, amount, user, fetchCartDetails, setVerifyingPayment, setInitiatingPayment}) {
+export default function OrderSummary({cart, setCart, amount, user, fetchCartDetails, setVerifyingPayment, setInitiatingPayment}) {
     const navigate = useNavigate();
     const shipping = (amount*0.1).toFixed(2);
     const totalAmount = (parseFloat(amount) + parseFloat(shipping)).toFixed(2);
@@ -19,7 +19,7 @@ export default function OrderSummary({cart, setcart, amount, user, fetchCartDeta
 
         if (!updatedcart || updatedcart.length !== currentCount) { 
             alert("Some Items in your cart are no longer available.");
-            setcart(updatedcart);
+            setCart(updatedcart);
             setInitiatingPayment(false);
             return;
         }
